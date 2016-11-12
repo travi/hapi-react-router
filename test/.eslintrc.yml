@@ -1,0 +1,1 @@
+extends: '@travi/travi/rules/tests/base'

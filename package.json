@@ -31,11 +31,15 @@
   "homepage": "https://github.com/travi/hapi-react-router#readme",
   "devDependencies": {
     "@travi/eslint-config-travi": "0.3.0",
+    "babel-cli": "6.18.0",
+    "babel-preset-es2015-node": "6.1.1",
+    "chai": "3.5.0",
     "cz-conventional-changelog": "1.2.0",
     "eslint": "3.10.0",
     "husky": "0.11.9",
     "mocha": "3.1.2",
     "npm-run-all": "3.1.1",
+    "sinon": "1.17.6",
     "validate-commit-msg": "2.8.2"
   },
   "config": {
