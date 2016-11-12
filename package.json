@@ -6,7 +6,8 @@
   "main": "lib/plugin.cjs.js",
   "module": "lib/plugin.es.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commitmsg": "validate-commit-msg"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,15 @@
   "bugs": {
     "url": "https://github.com/travi/hapi-react-router/issues"
   },
-  "homepage": "https://github.com/travi/hapi-react-router#readme"
+  "homepage": "https://github.com/travi/hapi-react-router#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "1.2.0",
+    "husky": "0.11.9",
+    "validate-commit-msg": "2.8.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
