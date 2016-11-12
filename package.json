@@ -6,8 +6,10 @@
   "main": "lib/plugin.cjs.js",
   "module": "lib/plugin.es.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "commitmsg": "validate-commit-msg"
+    "lint:js": "eslint .",
+    "test": "run-s lint:*",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "npm test"
   },
   "repository": {
     "type": "git",
@@ -27,8 +29,11 @@
   },
   "homepage": "https://github.com/travi/hapi-react-router#readme",
   "devDependencies": {
+    "@travi/eslint-config-travi": "0.3.0",
     "cz-conventional-changelog": "1.2.0",
+    "eslint": "3.10.0",
     "husky": "0.11.9",
+    "npm-run-all": "3.1.1",
     "validate-commit-msg": "2.8.2"
   },
   "config": {
