@@ -1,0 +1,28 @@
+{
+  "name": "@travi/hapi-react-router",
+  "license": "MIT",
+  "description": "hapi route to delegate routing for html content to react-router",
+  "version": "0.1.0",
+  "main": "lib/plugin.cjs.js",
+  "module": "lib/plugin.es.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travi/hapi-react-router.git"
+  },
+  "keywords": [
+    "hapi",
+    "react",
+    "react-router",
+    "server-side render",
+    "ssr",
+    "redux"
+  ],
+  "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "bugs": {
+    "url": "https://github.com/travi/hapi-react-router/issues"
+  },
+  "homepage": "https://github.com/travi/hapi-react-router#readme"
+}
