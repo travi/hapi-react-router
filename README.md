@@ -4,3 +4,21 @@
 
 [![license](https://img.shields.io/github/license/travi/hapi-react-router.svg)](LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## Local Development
+
+### Install dependencies
+```
+$ nvm install
+$ npm install
+```
+
+### Verification
+```
+$ npm test
+```
+
+### Run the example app
+```
+$ npm start
+```
