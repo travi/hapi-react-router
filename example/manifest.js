@@ -1,6 +1,16 @@
 export default {
     connections: [{port: 8090}],
     registrations: [
+        {plugin: 'vision'},
+        {
+            plugin: {
+                register: 'visionary',
+                options: {
+                    'engines': {'mustache': 'hapi-mustache'},
+                    'path': './example'
+                }
+            }
+        },
         {
             plugin: {
                 register: 'good',
@@ -23,6 +33,13 @@ export default {
             }
         },
         {plugin: '@travi/hapi-html-request-router'},
-        {plugin: '../src/route'}
+        {
+            plugin: {
+                register: '../src/route',
+                options: {
+                    respond: require('./respond.js').default
+                }
+            }
+        }
     ]
 };

@@ -1,12 +1,10 @@
-export function handler(request, reply) {
-    reply();
-}
-
 export function register(server, options, next) {
     server.route({
         method: 'GET',
         path: '/html',
-        handler
+        handler: (request, reply) => {
+            options.respond(reply, {renderedContent: '<p>Hello World</p>'});
+        }
     });
 
     next();

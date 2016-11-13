@@ -19,7 +19,16 @@ export default {
     connections: [{port: 8090}],
     registrations: [
         {plugin: '@travi/hapi-html-request-router'},
-        {plugin: '@travi/hapi-react-router'}
+        {
+            plugin: {
+                register: '@travi/hapi-react-router',
+                options: {
+                    respond: (reply, {renderedContent}) => {
+                        reply.view('layout', {renderedContent});
+                    }
+                }
+            }
+        }
     ]
 }
 ```
