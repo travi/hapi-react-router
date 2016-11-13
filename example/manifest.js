@@ -22,6 +22,7 @@ export default {
                 }
             }
         },
+        {plugin: '@travi/hapi-html-request-router'},
         {plugin: '../src/route'}
     ]
 };

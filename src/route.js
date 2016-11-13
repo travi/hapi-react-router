@@ -1,5 +1,5 @@
-export function handler() {
-
+export function handler(request, reply) {
+    reply();
 }
 
 export function register(server, options, next) {
