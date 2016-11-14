@@ -76,6 +76,9 @@
   "optionalDependencies": {
     "@travi/hapi-html-request-router": "*"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
