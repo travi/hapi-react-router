@@ -27,10 +27,11 @@ suite('route', () => {
             route = sinon.stub(),
             respond = sinon.spy(),
             routes = sinon.spy(),
+            request = any.simpleObject(),
             reply = any.simpleObject(),
-            url = any.string();
+            Root = any.simpleObject();
 
-        register({route}, {respond, routes}, next);
+        register({route}, {respond, routes, Root}, next);
 
         assert.calledOnce(next);
         assert.calledWith(route, sinon.match({
@@ -38,8 +39,8 @@ suite('route', () => {
             path: '/html'
         }));
 
-        route.yieldTo('handler', {raw: {req: {url}}}, reply);
+        route.yieldTo('handler', request, reply);
 
-        assert.calledWith(routerWrapper.default, url, reply, routes, respond);
+        assert.calledWith(routerWrapper.default, request, reply, {routes, respond, Root});
     });
 });

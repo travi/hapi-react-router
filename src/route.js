@@ -4,7 +4,11 @@ export function register(server, options, next) {
     server.route({
         method: 'GET',
         path: '/html',
-        handler: (req, reply) => renderThroughReactRouter(req.raw.req.url, reply, options.routes, options.respond)
+        handler: (request, reply) => renderThroughReactRouter(request, reply, {
+            routes: options.routes,
+            respond: options.respond,
+            Root: options.Root
+        })
     });
 
     next();

@@ -1,5 +1,6 @@
 import respond from './respond';
 import routes from './routes';
+import Root from './components/root';
 
 export default {
     connections: [{port: 8090}],
@@ -39,7 +40,7 @@ export default {
         {
             plugin: {
                 register: '../src/route',
-                options: {respond, routes}
+                options: {respond, routes, Root}
             }
         }
     ]

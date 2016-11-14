@@ -39,6 +39,11 @@ export default {
                             <Route path="/foo" component={Foo}/>
                             <Route path="/bar" component={Bar}/>
                         </Route>
+                    ),
+                    Root: ({store, children}) => (
+                        <Provider store={store}>
+                            {children}
+                        </Provider>
                     )
                 }
             }

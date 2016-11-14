@@ -1,9 +1,11 @@
 import React from 'react';
+import AppBar from 'material-ui/AppBar';
 import {Link} from 'react-router';
 
 export default function Wrap({children}) {
     return (
         <div id="wrap">
+            <AppBar title="Example" />
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>

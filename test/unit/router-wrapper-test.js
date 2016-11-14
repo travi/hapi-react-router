@@ -27,18 +27,22 @@ suite('router-wrapper', () => {
             url = any.string(),
             routes = any.simpleObject(),
             respond = sinon.spy(),
+            request = {raw: {req: {url}}},
             reply = sinon.spy(),
             renderProps = any.simpleObject(),
             context = any.simpleObject(),
+            Root = any.simpleObject(),
+            rootComponent = any.simpleObject(),
             renderedContent = any.string();
         routeMatcher.default.withArgs(url, routes).resolves({renderProps});
         React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
-        domServer.renderToString.withArgs(context).returns(renderedContent);
+        React.createElement.withArgs(Root, {request}).returns(rootComponent);
+        domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
 
-        return renderThroughReactRouter(url, reply, routes, respond).then(() => {
+        return renderThroughReactRouter(request, reply, {routes, respond, Root}).then(() => {
             assert.notCalled(reply);
             assert.calledOnce(respond);
-            assert.calledWith(respond, reply);
+            assert.calledWith(respond, reply, {renderedContent});
         });
     });
 
@@ -50,7 +54,7 @@ suite('router-wrapper', () => {
         routeMatcher.default.rejects(error);
         Boom.wrap.withArgs(error).returns(wrappedError);
 
-        return renderThroughReactRouter(null, reply).then(() => {
+        return renderThroughReactRouter({raw: {req: {url: any.string()}}}, reply, {}).then(() => {
             assert.calledWith(reply, wrappedError);
         });
     });
