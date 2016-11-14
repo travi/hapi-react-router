@@ -1,0 +1,6 @@
+extends: '@travi/travi/rules/react'
+
+rules:
+  max-params:
+    - error
+    - 4
