@@ -4,8 +4,15 @@ hapi route to delegate routing for html content to react-router
 
 [![Build Status](https://img.shields.io/travis/travi/hapi-react-router.svg?style=flat)](https://travis-ci.org/travi/hapi-react-router)
 
+[![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
 [![license](https://img.shields.io/github/license/travi/hapi-react-router.svg)](LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## Installation
+
+```
+$ npm install @travi/hapi-react-router
+```
 
 ## Usage
 
@@ -25,7 +32,14 @@ export default {
                 options: {
                     respond: (reply, {renderedContent}) => {
                         reply.view('layout', {renderedContent});
-                    }
+                    },
+                    routes: (
+                        <Route path="/" component={Wrap}>
+                            <IndexRoute component={Index}/>
+                            <Route path="/foo" component={Foo}/>
+                            <Route path="/bar" component={Bar}/>
+                        </Route>
+                    )
                 }
             }
         }

@@ -1,0 +1,13 @@
+test/
+src/
+scripts/
+
+.babelrc
+.editorconfig
+.eslintrc.yml
+.eslintignore
+.gitattributes
+.npmrc
+.nvmrc
+.travis.yml
+rollup.config.js
