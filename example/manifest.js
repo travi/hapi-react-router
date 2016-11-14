@@ -1,3 +1,6 @@
+import respond from './respond';
+import routes from './routes';
+
 export default {
     connections: [{port: 8090}],
     registrations: [
@@ -36,9 +39,7 @@ export default {
         {
             plugin: {
                 register: '../src/route',
-                options: {
-                    respond: require('./respond.js').default
-                }
+                options: {respond, routes}
             }
         }
     ]
