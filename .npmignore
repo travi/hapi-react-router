@@ -1,11 +1,12 @@
+example/
 test/
-src/
 scripts/
+src/
 
 .babelrc
 .editorconfig
-.eslintrc.yml
 .eslintignore
+.eslintrc.yml
 .gitattributes
 .npmrc
 .nvmrc
