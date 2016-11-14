@@ -1,1 +1,9 @@
 language: node_js
+deploy:
+  provider: npm
+  email: npm@travi.org
+  api_key:
+    secure: 1Kh1vilK32IwDJBWhWM8b03T4NvBWqfBNvSBJE3KuOYSCLtlH1GRYNkBoA00WoA3GZ4ARcuX/bAtAtLWFCGOK9Ts7E8h5dRaVq+nSh0x8CQAdfv6ogu8z8RlAfS3whLyijvlEfZlps8sOJf1n0WB7wpRZHGCgOV2m0nUI3AwF7DoMa9vbQmiK19UMCnbgKTXX246l0Jtbw6wrm4pDGHsYIywh0kbLUrFd3r0nespYqa/6fBk5LKurnG8ozj4sXsdjTB0Y3cIpg3eG4PwkIj5Y61+6svhRiUyddlA5dwf/lMM88iYHbdP/9pdTze+p9aewlfHqeQcP+E5//arXiPHEXOjUdfeQ1Va7fyZzv/3vecEORGkbU3pYn0omFP1dSb4qv9YsOA5l/sl5pQ19ZJxACtpUu2XTFT9ut9wPhw7wkp+WsMOhhHCSgRpFHcIWKaUtDFVs14nWYa70YGM//mSYmq5f9MZuIeqG1YnNnwPNkswaU8TbJMaTWWYJRGSnDHswe1LTKFygRhOW1m8xctU3o94gIlPLIwijwlnmHnq4DCPVmhl5J2JNKOWw0MGtn+1zJf13WxOLNb32dSGmI2i9pyzq91jGbetgi0pWJerh8MQt06tPD09QRn3rSbFj0uTfEYeNjtZmjSRDluKek5GvLTCT/3evROwze3UtAXN5+Y=
+  on:
+    tags: true
+    repo: travi/hapi-react-router
