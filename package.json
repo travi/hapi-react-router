@@ -2,7 +2,7 @@
   "name": "@travi/hapi-react-router",
   "license": "MIT",
   "description": "hapi route to delegate routing for html content to react-router",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "lib/plugin.cjs.js",
   "module": "lib/plugin.es.js",
   "scripts": {
