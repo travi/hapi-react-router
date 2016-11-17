@@ -16,7 +16,7 @@ $ npm install @travi/hapi-react-router
 
 ## Usage
 
-Include this plugin in the [manifest](https://github.com/hapijs/glue) of your hapi application 
+Include this plugin in the [manifest](https://github.com/hapijs/glue) of your hapi application
 to direct all requests to `/html` to a server-side renderer for your react-router routes. It is
 assumed that something ([not included](https://github.com/travi/hapi-html-request-router)) is
 in place to direct all `text/html` requests to this `/html` route.
@@ -44,7 +44,8 @@ export default {
                         <Provider store={store}>
                             {children}
                         </Provider>
-                    )
+                    ),
+                    store: createStore(reducer)
                 }
             }
         }

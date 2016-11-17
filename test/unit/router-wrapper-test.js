@@ -32,14 +32,15 @@ suite('router-wrapper', () => {
             renderProps = any.simpleObject(),
             context = any.simpleObject(),
             Root = any.simpleObject(),
+            store = any.simpleObject(),
             rootComponent = any.simpleObject(),
             renderedContent = any.string();
         routeMatcher.default.withArgs(url, routes).resolves({renderProps});
         React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
-        React.createElement.withArgs(Root, {request}).returns(rootComponent);
+        React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
         domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
 
-        return renderThroughReactRouter(request, reply, {routes, respond, Root}).then(() => {
+        return renderThroughReactRouter(request, reply, {routes, respond, Root, store}).then(() => {
             assert.notCalled(reply);
             assert.calledOnce(respond);
             assert.calledWith(respond, reply, {renderedContent});

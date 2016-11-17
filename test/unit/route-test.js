@@ -29,9 +29,10 @@ suite('route', () => {
             routes = sinon.spy(),
             request = any.simpleObject(),
             reply = any.simpleObject(),
-            Root = any.simpleObject();
+            Root = any.simpleObject(),
+            store = any.simpleObject();
 
-        register({route}, {respond, routes, Root}, next);
+        register({route}, {respond, routes, Root, store}, next);
 
         assert.calledOnce(next);
         assert.calledWith(route, sinon.match({
@@ -41,6 +42,6 @@ suite('route', () => {
 
         route.yieldTo('handler', request, reply);
 
-        assert.calledWith(routerWrapper.default, request, reply, {routes, respond, Root});
+        assert.calledWith(routerWrapper.default, request, reply, {routes, respond, Root, store});
     });
 });

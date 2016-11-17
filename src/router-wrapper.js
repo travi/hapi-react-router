@@ -4,10 +4,10 @@ import {RouterContext} from 'react-router';
 import Boom from 'boom';
 import matchRoute from './route-matcher';
 
-export default function renderThroughReactRouter(request, reply, {routes, respond, Root}) {
+export default function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
     return matchRoute(request.raw.req.url, routes).then(({renderProps}) => {
         respond(reply, {renderedContent: renderToString(
-            <Root request={request}>
+            <Root request={request} store={store}>
                 <RouterContext {...renderProps} />
             </Root>
         )});
