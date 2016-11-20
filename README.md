@@ -54,6 +54,8 @@ export default {
 }
 ```
 
+add something about redial
+
 ### Dependencies for you to provide
 
 This plugin provides you the ability to customize a few steps of the process. Default implementations
