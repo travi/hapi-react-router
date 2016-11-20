@@ -21,6 +21,10 @@ to direct all requests to `/html` to a server-side renderer for your react-route
 assumed that something ([not included](https://github.com/travi/hapi-html-request-router)) is
 in place to direct all `text/html` requests to this `/html` route.
 
+In addition, [redial](https://github.com/markdalgleish/redial) `fetch` hooks will be triggered
+and rendering will wait for all related requests to complete. This enables populating the data
+store based on the components that are mounted for the current route.
+
 ### Example
 ```js
 export default {
@@ -53,8 +57,6 @@ export default {
     ]
 }
 ```
-
-add something about redial
 
 ### Dependencies for you to provide
 

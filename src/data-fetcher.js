@@ -5,5 +5,5 @@ export default function ({renderProps, store}) {
         params: renderProps.params,
         dispatch: store.dispatch,
         state: store.getState()
-    });
+    }).then(() => Promise.resolve(({renderProps}))).catch((e) => Promise.reject(e));
 }

@@ -1,3 +1,4 @@
+import {createStore} from 'redux';
 import respond from './respond';
 import routes from './routes';
 import Root from './components/root';
@@ -40,7 +41,7 @@ export default {
         {
             plugin: {
                 register: '../src/route',
-                options: {respond, routes, Root}
+                options: {respond, routes, Root, store: createStore(() => undefined)}
             }
         }
     ]

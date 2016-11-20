@@ -26,7 +26,7 @@ suite('data fetcher', () => {
             store = {...any.simpleObject(), dispatch, getState};
         redial.trigger.withArgs('fetch', components, {params, dispatch, state}).resolves();
 
-        return assert.isFulfilled(fetchData({renderProps, store}));
+        return assert.isFulfilled(fetchData({renderProps, store}), {renderProps});
     });
 
     test('that a redial rejection bubbles', () => {

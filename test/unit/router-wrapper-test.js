@@ -7,6 +7,7 @@ import any from '@travi/any';
 import Boom from 'boom';
 import renderThroughReactRouter from '../../src/router-wrapper';
 import * as routeMatcher from '../../src/route-matcher';
+import * as dataFetcher from '../../src/data-fetcher';
 
 suite('router-wrapper', () => {
     let sandbox;
@@ -15,6 +16,7 @@ suite('router-wrapper', () => {
         sandbox = sinon.sandbox.create();
 
         sandbox.stub(routeMatcher, 'default');
+        sandbox.stub(dataFetcher, 'default');
         sandbox.stub(Boom, 'wrap');
         sandbox.stub(React, 'createElement');
         sandbox.stub(domServer, 'renderToString');
@@ -36,6 +38,7 @@ suite('router-wrapper', () => {
             rootComponent = any.simpleObject(),
             renderedContent = any.string();
         routeMatcher.default.withArgs(url, routes).resolves({renderProps});
+        dataFetcher.default.withArgs({renderProps, store}).resolves({renderProps});
         React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
         React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
         domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
