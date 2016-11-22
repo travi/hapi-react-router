@@ -9,6 +9,7 @@ export default function renderThroughReactRouter(request, reply, {routes, respon
     return matchRoute(request.raw.req.url, routes)
         .then(({renderProps}) => fetchData({renderProps, store}))
         .then(({renderProps}) => respond(reply, {
+            store,
             renderedContent: renderToString(
                 <Root request={request} store={store}>
                     <RouterContext {...renderProps} />

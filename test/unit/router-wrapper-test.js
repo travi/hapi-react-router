@@ -45,8 +45,7 @@ suite('router-wrapper', () => {
 
         return renderThroughReactRouter(request, reply, {routes, respond, Root, store}).then(() => {
             assert.notCalled(reply);
-            assert.calledOnce(respond);
-            assert.calledWith(respond, reply, {renderedContent});
+            assert.calledWith(respond, reply, {renderedContent, store});
         });
     });
 
