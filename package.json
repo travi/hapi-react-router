@@ -69,7 +69,7 @@
     "sinon": "1.17.6",
     "sinon-as-promised": "4.0.2",
     "validate-commit-msg": "2.8.2",
-    "vision": "4.1.0",
+    "vision": "4.1.1",
     "visionary": "6.0.2"
   },
   "peerDependencies": {
