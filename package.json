@@ -2,7 +2,7 @@
   "name": "@travi/hapi-react-router",
   "license": "MIT",
   "description": "hapi route to delegate routing for html content to react-router",
-  "version": "0.5.0",
+  "version": "0.0.0-semantically-released",
   "main": "lib/plugin.cjs.js",
   "module": "lib/plugin.es.js",
   "scripts": {
@@ -12,14 +12,15 @@
     "start": "cross-env BABEL_ENV=example babel-node ./example/app.js",
     "build": "rollup -c",
     "preversion": "npm test",
-    "prepublish": "npm run build",
     "commitmsg": "validate-commit-msg",
     "precommit": "npm test",
-    "postpublish": "greenkeeper-postpublish"
+    "postpublish": "greenkeeper-postpublish",
+    "presemantic-release": "npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/travi/hapi-react-router.git"
+    "url": "https://github.com/travi/hapi-react-router.git"
   },
   "keywords": [
     "hapi",
@@ -66,6 +67,7 @@
     "redux": "3.6.0",
     "rollup": "0.36.4",
     "rollup-plugin-babel": "2.6.1",
+    "semantic-release": "6.3.2",
     "sinon": "1.17.6",
     "sinon-as-promised": "4.0.2",
     "validate-commit-msg": "2.8.2",
