@@ -1,5 +1,8 @@
 language: node_js
 after_success: npm run semantic-release
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
 env:
   global:
     secure: 1lH7jMqKbv46M95SC2URO20jwl3VNXhFCz+G2q2TmQwamvfrPaK8w+ZL5nBPWVRUW42nTt0DLXNmVkRiDIPVVU+bUutN0KYN5IfFieeotM9fqoUnssI+/0JBmzpZOAuLBJhgJIPyQTo3PDG5WgR4drMv0xDXKdruUubAMLhco8HDXplLn9W/ZvPD/pWk+JS6fHRIJQtU+dETioEthTkqgiohbNMZfc3GOF+Fis61J59+b7u/yr2Q182G8dONN9CaxDkPhbm/bDa5G7BHhtWl7vUgnE+LpvVnTQx0cAtnAYhlLXXsSH0PAPirXoW/4Xcmt9o91YciVhr85a4a319pfPYlACBXhvFIZL7hm5k8NnNZJrbFS3NOFFi7zoopxuGDgzd6KF2kU/lLtPCqy1NxaSUsq2CEdyLMiWFMy7Tw2hHuf1nEkm4IYO/sg6pNzA6Ast0jEOzEYIvWiI1pgb/0zBmN4OSbPbDO15Nf5irXtFnABhCPxdoIvgSB1yOphrWdySfUWjy5OpHpYp7kRsBuor8FtACG0GLOyXLpCy3WtrCv7aGMWpfSVsMvZB9J4qOEIVlNHKc45U0cKS42M6VSI7fd3Exc5qzT1+ZGiCUMaaUjvxQ0RT9/zYIQR/k6Ztm834VtXoGuQFVUVp0H92BsxqeFsuegtRyPyiSsvohCuUQ=
