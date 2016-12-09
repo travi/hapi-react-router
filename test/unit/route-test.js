@@ -27,12 +27,15 @@ suite('route', () => {
             route = sinon.stub(),
             respond = sinon.spy(),
             routes = sinon.spy(),
-            request = any.simpleObject(),
+            auth = any.simpleObject(),
+            request = {...any.simpleObject(), auth},
             reply = any.simpleObject(),
             Root = any.simpleObject(),
-            store = any.simpleObject();
+            store = any.simpleObject(),
+            configureStore = sinon.stub();
+        configureStore.withArgs({session: {auth}}).returns(store);
 
-        register({route}, {respond, routes, Root, store}, next);
+        register({route}, {respond, routes, Root, configureStore}, next);
 
         assert.calledOnce(next);
         assert.calledWith(route, sinon.match({

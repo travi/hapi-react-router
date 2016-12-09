@@ -51,7 +51,7 @@ export default {
                             {children}
                         </Provider>
                     ),
-                    store: createStore(reducer)
+                    configureStore: ({session}) => createStore(reducer, composeMiddlewares(session))
                 }
             }
         }

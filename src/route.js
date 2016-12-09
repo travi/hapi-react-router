@@ -8,7 +8,7 @@ export function register(server, options, next) {
             routes: options.routes,
             respond: options.respond,
             Root: options.Root,
-            store: options.store
+            store: options.configureStore({session: {auth: request.auth}})
         })
     });
 
