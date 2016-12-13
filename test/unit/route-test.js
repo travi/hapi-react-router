@@ -27,13 +27,13 @@ suite('route', () => {
             route = sinon.stub(),
             respond = sinon.spy(),
             routes = sinon.spy(),
-            auth = any.simpleObject(),
+            auth = {credentials: any.simpleObject()},
             request = {...any.simpleObject(), auth},
             reply = any.simpleObject(),
             Root = any.simpleObject(),
             store = any.simpleObject(),
             configureStore = sinon.stub();
-        configureStore.withArgs({session: {auth}}).returns(store);
+        configureStore.withArgs({session: {auth: auth.credentials}}).returns(store);
 
         register({route}, {respond, routes, Root, configureStore}, next);
 
