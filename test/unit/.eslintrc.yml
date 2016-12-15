@@ -1,1 +1,3 @@
-extends: '@travi/travi/rules/tests/mocha'
+extends:
+  - '@travi/travi/rules/tests/mocha'
+  - '@travi/travi/rules/tests/react'

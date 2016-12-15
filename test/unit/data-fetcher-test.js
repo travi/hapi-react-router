@@ -5,37 +5,36 @@ import redial from 'redial';
 import fetchData from '../../src/data-fetcher';
 
 suite('data fetcher', () => {
-    let sandbox;
+  let sandbox;
 
-    setup(() => {
-        sandbox = sinon.sandbox.create();
+  setup(() => {
+    sandbox = sinon.sandbox.create();
 
-        sandbox.stub(redial, 'trigger');
-    });
+    sandbox.stub(redial, 'trigger');
+  });
 
-    teardown(() => sandbox.restore());
+  teardown(() => sandbox.restore());
 
-    test('that redial triggers the fetch hook for mounted components', () => {
-        const
-            components = any.simpleObject(),
-            params = any.simpleObject(),
-            dispatch = any.simpleObject(),
-            state = any.simpleObject(),
-            getState = sinon.stub().returns(state),
-            renderProps = {...any.simpleObject(), components, params},
-            store = {...any.simpleObject(), dispatch, getState};
-        redial.trigger.withArgs('fetch', components, {params, dispatch, state}).resolves();
+  test('that redial triggers the fetch hook for mounted components', () => {
+    const components = any.simpleObject();
+    const params = any.simpleObject();
+    const dispatch = any.simpleObject();
+    const state = any.simpleObject();
+    const getState = sinon.stub().returns(state);
+    const renderProps = {...any.simpleObject(), components, params};
+    const store = {...any.simpleObject(), dispatch, getState};
+    redial.trigger.withArgs('fetch', components, {params, dispatch, state}).resolves();
 
-        return assert.isFulfilled(fetchData({renderProps, store}), {renderProps});
-    });
+    return assert.isFulfilled(fetchData({renderProps, store}), {renderProps});
+  });
 
-    test('that a redial rejection bubbles', () => {
-        const error = new Error(any.word());
-        redial.trigger.rejects(error);
+  test('that a redial rejection bubbles', () => {
+    const error = new Error(any.word());
+    redial.trigger.rejects(error);
 
-        return assert.isRejected(fetchData({
-            renderProps: any.simpleObject(),
-            store: {...any.simpleObject(), getState: () => undefined}
-        }), error);
-    });
+    return assert.isRejected(fetchData({
+      renderProps: any.simpleObject(),
+      store: {...any.simpleObject(), getState: () => undefined}
+    }), error);
+  });
 });
