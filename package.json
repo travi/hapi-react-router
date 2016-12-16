@@ -8,7 +8,9 @@
   "scripts": {
     "lint:js": "eslint .",
     "tests:unit": "mocha --recursive test/unit",
-    "test": "run-s lint:* tests:*",
+    "test": "run-s lint:* coverage",
+    "coverage": "nyc run-s tests:unit",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "start": "cross-env BABEL_ENV=example babel-node ./example/app.js",
     "build": "rollup -c",
     "preversion": "npm test",
@@ -59,6 +61,7 @@
     "material-ui": "0.16.5",
     "mocha": "3.2.0",
     "npm-run-all": "3.1.2",
+    "nyc": "10.0.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "react-router": "3.0.0",
