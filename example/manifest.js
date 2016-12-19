@@ -41,7 +41,7 @@ export default {
     {
       plugin: {
         register: '../src/route',
-        options: {respond, routes, Root, store: createStore(() => undefined)}
+        options: {respond, routes, Root, configureStore: () => createStore(() => undefined)}
       }
     }
   ]

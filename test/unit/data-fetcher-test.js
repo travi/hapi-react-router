@@ -22,10 +22,11 @@ suite('data fetcher', () => {
     const state = any.simpleObject();
     const getState = sinon.stub().returns(state);
     const renderProps = {...any.simpleObject(), components, params};
+    const status = any.integer();
     const store = {...any.simpleObject(), dispatch, getState};
     redial.trigger.withArgs('fetch', components, {params, dispatch, state}).resolves();
 
-    return assert.isFulfilled(fetchData({renderProps, store}), {renderProps});
+    return assert.isFulfilled(fetchData({renderProps, store, status}), {renderProps, status});
   });
 
   test('that a redial rejection bubbles', () => {

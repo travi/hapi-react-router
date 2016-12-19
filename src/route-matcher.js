@@ -1,4 +1,11 @@
+import {OK, NOT_FOUND} from 'http-status-codes';
 import {match, createMemoryHistory} from 'react-router';
+
+function determineStatusFrom(components) {
+  if (components.map(component => component.displayName).includes('NotFound')) return NOT_FOUND;
+
+  return OK;
+}
 
 export default function matchRoute(url, routes) {
   return new Promise((resolve, reject) => {
@@ -9,7 +16,7 @@ export default function matchRoute(url, routes) {
         reject(err);
       }
 
-      resolve({redirectLocation, renderProps});
+      resolve({redirectLocation, renderProps, status: determineStatusFrom(renderProps.components)});
     });
   });
 }

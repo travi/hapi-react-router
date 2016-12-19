@@ -7,9 +7,10 @@ import fetchData from './data-fetcher';
 
 export default function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
   return matchRoute(request.raw.req.url, routes)
-    .then(({renderProps}) => fetchData({renderProps, store}))
-    .then(({renderProps}) => respond(reply, {
+    .then(({renderProps, status}) => fetchData({renderProps, store, status}))
+    .then(({renderProps, status}) => respond(reply, {
       store,
+      status,
       renderedContent: renderToString(
         <Root request={request} store={store}>
           <RouterContext {...renderProps} />

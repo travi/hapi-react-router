@@ -94,5 +94,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "http-status-codes": "1.0.6"
   }
 }

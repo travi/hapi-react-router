@@ -31,20 +31,21 @@ suite('router-wrapper', () => {
     const request = {raw: {req: {url}}};
     const reply = sinon.spy();
     const renderProps = any.simpleObject();
+    const status = any.integer();
     const context = any.simpleObject();
     const Root = any.simpleObject();
     const store = any.simpleObject();
     const rootComponent = any.simpleObject();
     const renderedContent = any.string();
-    routeMatcher.default.withArgs(url, routes).resolves({renderProps});
-    dataFetcher.default.withArgs({renderProps, store}).resolves({renderProps});
+    routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
+    dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
     React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
     React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
     domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
 
     return renderThroughReactRouter(request, reply, {routes, respond, Root, store}).then(() => {
       assert.notCalled(reply);
-      assert.calledWith(respond, reply, {renderedContent, store});
+      assert.calledWith(respond, reply, {renderedContent, store, status});
     });
   });
 
