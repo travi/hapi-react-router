@@ -41,7 +41,7 @@
     "@travi/any": "1.0.1",
     "@travi/eslint-config-travi": "1.0.0-beta.2",
     "@travi/hapi-html-request-router": "0.2.0",
-    "babel-cli": "6.22.1",
+    "babel-cli": "6.22.2",
     "babel-preset-es2015-node": "6.1.1",
     "babel-preset-es2015-rollup": "3.0.0",
     "babel-preset-react": "6.16.0",
