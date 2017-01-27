@@ -17,7 +17,7 @@ suite('route', () => {
 
   test('that the plugin is defined', () => {
     assert.deepEqual(register.attributes, {
-      name: 'html-route'
+      pkg: require('../../package.json')
     });
   });
 
