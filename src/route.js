@@ -17,5 +17,5 @@ export function register(server, options, next) {
 }
 
 register.attributes = {
-  name: 'html-route'
+  pkg: require('../package.json')
 };
