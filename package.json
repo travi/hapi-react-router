@@ -78,7 +78,7 @@
     "visionary": "6.0.2"
   },
   "peerDependencies": {
-    "boom": "^4.0.0",
+    "boom": "^4.3.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^4.0.0",
