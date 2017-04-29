@@ -12,22 +12,25 @@ hapi route to delegate routing for html content to react-router
 
 ## Installation
 
-```
+```sh
 $ npm install @travi/hapi-react-router -S
 ```
 
 ## Usage
 
-Include this plugin in the [manifest](https://github.com/hapijs/glue) of your hapi application
-to direct all requests to `/html` to a server-side renderer for your react-router routes. It is
-assumed that something ([not included](https://github.com/travi/hapi-html-request-router)) is
-in place to direct all `text/html` requests to this `/html` route.
+Include this plugin in the [manifest](https://github.com/hapijs/glue) of your
+hapi application to direct all requests to `/html` to a server-side renderer
+for your react-router routes. It is assumed that something
+([not included](https://github.com/travi/hapi-html-request-router)) is in place
+to direct all `text/html` requests to this `/html` route.
 
-In addition, [redial](https://github.com/markdalgleish/redial) `fetch` hooks will be triggered
-and rendering will wait for all related requests to complete. This enables populating the data
-store based on the components that are mounted for the current route.
+In addition, [redial](https://github.com/markdalgleish/redial) `fetch` hooks
+will be triggered and rendering will wait for all related requests to complete.
+This enables populating the data store based on the components that are mounted
+for the current route.
 
 ### Example
+
 ```js
 export default {
     connections: [{port: 8090}],
@@ -63,35 +66,43 @@ export default {
 
 ### Dependencies for you to provide
 
-This plugin provides you the ability to customize a few steps of the process. Default implementations
-are currently not provided, so these dependencies are required.
+This plugin provides you the ability to customize a few steps of the process.
+Default implementations are currently not provided, so these dependencies are
+required.
 
-* `respond`: a function that will that allows you to call `reply` on your own, allowing you to perform
-  additional steps before the response
-* `routes`: the definition of your react-router routes that this plugin should match the request url
-  against
+* `respond`: a function that will that allows you to call `reply` on your own,
+  allowing you to perform additional steps before the response
+* `routes`: the definition of your react-router routes that this plugin should
+  match the request url against
   * If you use a [catch-all route](https://github.com/ReactTraining/react-router/blob/c3cd9675bd8a31368f87da74ac588981cbd6eae7/upgrade-guides/v1.0.0.md#notfound-route)
-    to display an appropriate message when the route does not match, it should have a `displayName` of `NotFound`. This 
-    will enable the status code to be passed to `respond` as `404`. Please note that the automatic mapping of the `name`
-    property should not be relied on because it can be mangled during minification and, therefore, not match in production.
-* `Root`: a react component that will wrap the mounted components that result from the matched route
-* `store`: a data store that will be passed as a prop to the `<Root />` component so that your
-  component can inject it into the context through a provider component.
+    to display an appropriate message when the route does not match, it should
+    have a `displayName` of `NotFound`. This will enable the status code to be
+    passed to `respond` as `404`. Please note that the automatic mapping of the
+    `name` property should not be relied on because it can be mangled during
+    minification and, therefore, not match in production.
+* `Root`: a react component that will wrap the mounted components that result
+  from the matched route
+* `store`: a data store that will be passed as a prop to the `<Root />` component
+  so that your component can inject it into the context through a provider
+  component.
 
 ## Local Development
 
 ### Install dependencies
-```
+
+```sh
 $ nvm install
 $ npm install
 ```
 
 ### Verification
-```
+
+```sh
 $ npm test
 ```
 
 ### Run the example app
-```
+
+```sh
 $ npm start
 ```
