@@ -12,9 +12,7 @@ export default function matchRoute(url, routes) {
     const history = createMemoryHistory();
 
     match({routes, location: history.createLocation(url)}, (err, redirectLocation, renderProps) => {
-      if (err) {
-        reject(err);
-      }
+      if (err) reject(err);
 
       resolve({redirectLocation, renderProps, status: determineStatusFrom(renderProps.components)});
     });
