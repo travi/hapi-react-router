@@ -1,0 +1,3 @@
+extends:
+  - '@travi/travi/rules/tests/cucumber'
+  - '@travi/travi/rules/tests/react'
