@@ -5,10 +5,12 @@ import Boom from 'boom';
 import matchRoute from './route-matcher';
 import fetchData from './data-fetcher';
 
-export default function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
-  return matchRoute(request.raw.req.url, routes)
-    .then(({renderProps, status}) => fetchData({renderProps, store, status}))
-    .then(({renderProps, status}) => respond(reply, {
+export default async function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
+  try {
+    const {renderProps, status} = await matchRoute(request.raw.req.url, routes);
+    await fetchData({renderProps, store, status});
+
+    respond(reply, {
       store,
       status,
       renderedContent: renderToString(
@@ -16,6 +18,8 @@ export default function renderThroughReactRouter(request, reply, {routes, respon
           <RouterContext {...renderProps} />
         </Root>
       )
-    }))
-    .catch(err => reply(Boom.wrap(err)));
+    });
+  } catch (e) {
+    reply(Boom.wrap(e));
+  }
 }
