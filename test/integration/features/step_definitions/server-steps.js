@@ -1,16 +1,27 @@
 import React from 'react';
 import {createStore} from 'redux';
+import {connect, Provider} from 'react-redux';
 import {Route} from 'react-router';
+import {provideHooks} from 'redial';
 import hapi from 'hapi';
+import any from '@travi/any';
 import {defineSupportCode} from 'cucumber';
 import {World} from '../support/world';
+
+const reducer = (state, action) => {
+  if ('loaded-existing-data' === action.type) {
+    return {...state, dataPoint: action.dataPoint};
+  }
+
+  return state;
+};
 
 function respond(reply, {renderedContent, status}) {
   reply.view('layout', {renderedContent}).code(status);
 }
 
-function Root({children}) {
-  return children;
+function Root({children, store}) {
+  return <Provider store={store}>{children}</Provider>;
 }
 
 function Wrap({children}) {
@@ -22,16 +33,35 @@ function NotFound() {
 }
 NotFound.displayName = 'NotFound';
 
-const routes = (
-  <Route path="/" component={Wrap}>
-    <Route path="*" component={NotFound} />
-  </Route>
-);
+function Existing({dataPoint}) {
+  return <div>{dataPoint}</div>;
+}
 
 defineSupportCode(({Before, setWorldConstructor}) => {
   setWorldConstructor(World);
 
+  let dataPoint;
+
+  const ConnectedExisting = connect(state => ({dataPoint: state.dataPoint}))(provideHooks({
+    fetch({dispatch}) {
+      return new Promise(resolve => setTimeout(() => {
+        dispatch({type: 'loaded-existing-data', dataPoint});
+        resolve();
+      }, 1000));
+    }
+  })(Existing));
+
+  const routes = (
+    <Route path="/" component={Wrap}>
+      <Route path="existing-route" component={ConnectedExisting} />
+      <Route path="*" component={NotFound} />
+    </Route>
+  );
+
   Before(function () {
+    this.dataPoint = any.word();
+    dataPoint = this.dataPoint;
+
     if (!this.server) {
       this.server = new hapi.Server();
       this.server.connection();
@@ -41,7 +71,7 @@ defineSupportCode(({Before, setWorldConstructor}) => {
           {register: require('@travi/hapi-html-request-router')},
           {
             register: require('../../../../src/route'),
-            options: {respond, routes, Root, configureStore: () => createStore(() => undefined)}
+            options: {respond, routes, Root, configureStore: () => createStore(reducer)}
           },
           {register: require('vision')},
           {
