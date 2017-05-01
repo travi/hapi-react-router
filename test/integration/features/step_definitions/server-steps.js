@@ -33,6 +33,14 @@ function NotFound() {
 }
 NotFound.displayName = 'NotFound';
 
+function ServerError() {
+  return <div />;
+}
+
+const ConnectedError = connect(() => ({}))(provideHooks({
+  fetch: () => Promise.reject(new Error('failed to fetch data'))
+})(ServerError));
+
 function Existing({dataPoint}) {
   return <div>{dataPoint}</div>;
 }
@@ -54,6 +62,7 @@ defineSupportCode(({Before, setWorldConstructor}) => {
   const routes = (
     <Route path="/" component={Wrap}>
       <Route path="existing-route" component={ConnectedExisting} />
+      <Route path="server-error" component={ConnectedError} />
       <Route path="*" component={NotFound} />
     </Route>
   );
