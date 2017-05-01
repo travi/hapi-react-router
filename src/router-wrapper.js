@@ -8,7 +8,7 @@ import fetchData from './data-fetcher';
 export default async function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
   try {
     const {renderProps, status} = await matchRoute(request.raw.req.url, routes);
-    await fetchData({renderProps, store, status});
+    await fetchData({renderProps, store});
 
     respond(reply, {
       store,
