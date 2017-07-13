@@ -80,7 +80,7 @@
     "react-tap-event-plugin": "2.0.1",
     "redial": "0.5.0",
     "redux": "3.7.2",
-    "rollup": "0.45.1",
+    "rollup": "0.45.2",
     "rollup-plugin-babel": "2.7.1",
     "semantic-release": "6.3.6",
     "sinon": "2.3.7",
