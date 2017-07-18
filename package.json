@@ -52,7 +52,7 @@
     "babel-preset-es2015-rollup": "3.0.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
-    "boom": "5.1.0",
+    "boom": "5.2.0",
     "chai": "4.1.0",
     "chai-as-promised": "7.1.1",
     "codecov": "2.2.0",
