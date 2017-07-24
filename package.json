@@ -107,6 +107,6 @@
     }
   },
   "dependencies": {
-    "http-status-codes": "1.1.6"
+    "http-status-codes": "1.2.0"
   }
 }
