@@ -1,9 +1,10 @@
 import React from 'react';
 import {createStore} from 'redux';
 import {connect, Provider} from 'react-redux';
-import {Route} from 'react-router';
+import {Route, Redirect} from 'react-router';
 import {provideHooks} from 'redial';
 import hapi from 'hapi';
+import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
 import any from '@travi/any';
 import {defineSupportCode} from 'cucumber';
 import {World} from '../support/world';
@@ -63,6 +64,9 @@ defineSupportCode(({Before, setWorldConstructor}) => {
     <Route path="/" component={Wrap}>
       <Route path="existing-route" component={ConnectedExisting} />
       <Route path="server-error" component={ConnectedError} />
+      <Redirect from="temporary-redirect" to="/existing-route" state={{status: MOVED_TEMPORARILY}} />
+      <Redirect from="permanent-redirect" to="/existing-route" state={{status: MOVED_PERMANENTLY}} />
+      <Redirect from="redirect" to="/existing-route" />
       <Route path="*" component={NotFound} />
     </Route>
   );

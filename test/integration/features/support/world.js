@@ -3,5 +3,7 @@ export function World() {
     method: 'GET',
     headers: {accept: 'text/html'},
     url
+  }).then(response => {
+    this.serverResponse = response;
   });
 }

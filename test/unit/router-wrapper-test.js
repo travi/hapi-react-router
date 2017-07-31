@@ -1,6 +1,7 @@
 import React from 'react';
 import {RouterContext} from 'react-router';
 import domServer from 'react-dom/server';
+import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
@@ -11,6 +12,11 @@ import * as dataFetcher from '../../src/data-fetcher';
 
 suite('router-wrapper', () => {
   let sandbox;
+  const Root = any.simpleObject();
+  const routes = any.simpleObject();
+  const store = any.simpleObject();
+  const url = any.string();
+  const request = {raw: {req: {url}}};
 
   setup(() => {
     sandbox = sinon.sandbox.create();
@@ -25,16 +31,11 @@ suite('router-wrapper', () => {
   teardown(() => sandbox.restore());
 
   test('that response contains the rendered content when the react-router route matches', () => {
-    const url = any.string();
-    const routes = any.simpleObject();
     const respond = sinon.spy();
-    const request = {raw: {req: {url}}};
     const reply = sinon.spy();
     const renderProps = any.simpleObject();
     const status = any.integer();
     const context = any.simpleObject();
-    const Root = any.simpleObject();
-    const store = any.simpleObject();
     const rootComponent = any.simpleObject();
     const renderedContent = any.string();
     routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
@@ -46,6 +47,57 @@ suite('router-wrapper', () => {
     return renderThroughReactRouter(request, reply, {routes, respond, Root, store}).then(() => {
       assert.notCalled(reply);
       assert.calledWith(respond, reply, {renderedContent, store, status});
+    });
+  });
+
+  test('that a temporary redirect results when a redirectLocation is defined with a 302 status', () => {
+    const respond = sinon.spy();
+    const redirect = sinon.stub();
+    const temporary = sinon.stub();
+    const permanent = sinon.stub();
+    const redirectPathname = any.url();
+    const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_TEMPORARILY}};
+    routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
+    redirect.withArgs(redirectPathname).returns({temporary, permanent});
+
+    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+      assert.notCalled(respond);
+      assert.notCalled(permanent);
+      assert.called(temporary);
+    });
+  });
+
+  test('that a permanent redirect results when a redirectLocation is defined with a 301 status', () => {
+    const respond = sinon.spy();
+    const redirect = sinon.stub();
+    const temporary = sinon.stub();
+    const permanent = sinon.stub();
+    const redirectPathname = any.url();
+    const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_PERMANENTLY}};
+    routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
+    redirect.withArgs(redirectPathname).returns({temporary, permanent});
+
+    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+      assert.notCalled(respond);
+      assert.notCalled(temporary);
+      assert.called(permanent);
+    });
+  });
+
+  test('that a temporary redirect results when a redirectLocation is defined without a status set', () => {
+    const respond = sinon.spy();
+    const redirect = sinon.stub();
+    const temporary = sinon.stub();
+    const permanent = sinon.stub();
+    const redirectPathname = any.url();
+    const redirectLocation = {pathname: redirectPathname};
+    routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
+    redirect.withArgs(redirectPathname).returns({temporary, permanent});
+
+    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+      assert.notCalled(respond);
+      assert.notCalled(permanent);
+      assert.called(temporary);
     });
   });
 

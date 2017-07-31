@@ -7,15 +7,11 @@ defineSupportCode(({When, Then, setWorldConstructor}) => {
   setWorldConstructor(World);
 
   When('a request is made for a route that does not exist', function () {
-    return this.makeRequest({url: '/missing'}).then(response => {
-      this.serverResponse = response;
-    });
+    return this.makeRequest({url: '/missing'});
   });
 
   When('a request is made for a route that fails to load data', function () {
-    return this.makeRequest({url: '/server-error'}).then(response => {
-      this.serverResponse = response;
-    });
+    return this.makeRequest({url: '/server-error'});
   });
 
   Then('a not-found response is returned', function (callback) {

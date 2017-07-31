@@ -7,9 +7,7 @@ defineSupportCode(({When, Then, setWorldConstructor}) => {
   setWorldConstructor(World);
 
   When('a request is made for an existing route', function () {
-    return this.makeRequest({url: '/existing-route'}).then(response => {
-      this.serverResponse = response;
-    });
+    return this.makeRequest({url: '/existing-route'});
   });
 
   Then('the route is rendered successfully', function (callback) {

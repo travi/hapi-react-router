@@ -25,15 +25,27 @@ suite('route matcher', () => {
     createLocation.reset();
   });
 
-  test('that renderProps and redirectLocation are returned when matching resolves', () => {
+  test('that renderProps is returned when matching resolves to a route', () => {
     const location = any.string();
     createLocation.withArgs(url).returns(location);
     const renderPropWithComponents = {...renderProps, components: any.listOf(() => ({displayName: any.word()}))};
-    reactRouter.match.withArgs({location, routes}).yields(null, redirectLocation, renderPropWithComponents);
+    reactRouter.match.withArgs({location, routes}).yields(null, null, renderPropWithComponents);
+
+    return assert.becomes(matchRoute(url, routes), {
+      redirectLocation: null,
+      renderProps: renderPropWithComponents,
+      status: OK
+    });
+  });
+
+  test('that redirectLocation is returned when matching resolves to a redirect', () => {
+    const location = any.string();
+    createLocation.withArgs(url).returns(location);
+    reactRouter.match.withArgs({location, routes}).yields(null, redirectLocation, null);
 
     return assert.becomes(matchRoute(url, routes), {
       redirectLocation,
-      renderProps: renderPropWithComponents,
+      renderProps: null,
       status: OK
     });
   });
