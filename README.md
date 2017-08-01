@@ -29,6 +29,9 @@ will be triggered and rendering will wait for all related requests to complete.
 This enables populating the data store based on the components that are mounted
 for the current route.
 
+:warning: [a regenerator runtime](https://babeljs.io/docs/plugins/transform-regenerator/)
+is required since this package leverages async functions
+
 ### Example
 
 ```js
