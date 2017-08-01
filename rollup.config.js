@@ -7,7 +7,7 @@ export default {
     babel({
       babelrc: false,
       exclude: ['./node_modules/**'],
-      presets: ['es2015-rollup', 'react']
+      presets: ['es2015-rollup', 'stage-3', 'react']
     })
   ],
   targets: [
