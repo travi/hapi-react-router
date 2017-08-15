@@ -1,5 +1,7 @@
 # hapi-react-router
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/travi/hapi-react-router.svg)](https://greenkeeper.io/)
+
 hapi route to delegate routing for html content to react-router
 
 [![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
