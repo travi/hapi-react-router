@@ -44,7 +44,7 @@
   "homepage": "https://github.com/travi/hapi-react-router#readme",
   "devDependencies": {
     "@travi/any": "1.4.2",
-    "@travi/eslint-config-travi": "1.5.7",
+    "@travi/eslint-config-travi": "1.5.8",
     "@travi/hapi-html-request-router": "1.1.0",
     "babel-cli": "6.26.0",
     "babel-preset-es2015-node": "6.1.1",
