@@ -83,7 +83,7 @@
     "semantic-release": "8.2.0",
     "sinon": "4.0.1",
     "validate-commit-msg": "2.14.0",
-    "vision": "4.1.1",
+    "vision": "5.0.0-rc7",
     "visionary": "6.0.2"
   },
   "peerDependencies": {
