@@ -57,7 +57,7 @@
     "codecov": "3.0.0",
     "cross-env": "5.1.0",
     "cucumber": "3.1.0",
-    "cz-conventional-changelog": "2.0.0",
+    "cz-conventional-changelog": "2.1.0",
     "globstar": "1.0.0",
     "glue": "4.2.0",
     "good": "7.3.0",
