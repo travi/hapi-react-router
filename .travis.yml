@@ -3,10 +3,11 @@ notifications:
   email: false
 after_install: npm ls >/dev/null
 before_script: npm run greenkeeper:update-lockfile
-after_script: npm run greenkeeper:upload-lockfile
-after_success:
-  - npm run coverage:report
+script:
+  - npm test
   - npm run semantic-release
+after_script: npm run greenkeeper:upload-lockfile
+after_success: npm run coverage:report
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
