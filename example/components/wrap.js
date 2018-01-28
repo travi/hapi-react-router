@@ -1,4 +1,5 @@
 import React from 'react';
+import {node} from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import {Link} from 'react-router';
 
@@ -21,5 +22,5 @@ export default function Wrap({children}) {
 Wrap.displayName = 'Wrap';
 
 Wrap.propTypes = {
-  children: React.PropTypes.node
+  children: node
 };

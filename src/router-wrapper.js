@@ -29,11 +29,11 @@ export default async function renderThroughReactRouter(request, reply, {routes, 
       respond(reply, {
         store,
         status,
-        renderedContent: renderToString(
+        renderedContent: renderToString((
           <Root request={request} store={store}>
             <RouterContext {...renderProps} />
           </Root>
-        )
+        ))
       });
     }
   } catch (e) {

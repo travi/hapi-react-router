@@ -73,7 +73,7 @@ defineSupportCode(({Before, setWorldConstructor}) => {
 
   Before(function () {
     this.dataPoint = any.word();
-    dataPoint = this.dataPoint;
+    dataPoint = this.dataPoint;     // eslint-disable-line prefer-destructuring
 
     if (!this.server) {
       this.server = new hapi.Server();
