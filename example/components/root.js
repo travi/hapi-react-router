@@ -1,4 +1,5 @@
 import React from 'react';
+import {node, shape, string} from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -13,8 +14,8 @@ export default function Root({children, request}) {
 Root.displayName = 'Root';
 
 Root.propTypes = {
-  children: React.PropTypes.node,
-  request: React.PropTypes.shape({
-    headers: React.PropTypes.shape({'user-agent': React.PropTypes.string})
+  children: node,
+  request: shape({
+    headers: shape({'user-agent': string})
   })
 };
