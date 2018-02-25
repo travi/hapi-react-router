@@ -86,7 +86,7 @@
     "rollup": "0.56.2",
     "rollup-plugin-babel": "3.0.3",
     "semantic-release": "12.4.1",
-    "sinon": "4.4.1",
+    "sinon": "4.4.2",
     "validate-commit-msg": "2.14.0",
     "vision": "4.1.1",
     "visionary": "6.0.2"
