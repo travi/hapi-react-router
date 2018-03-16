@@ -85,7 +85,7 @@
     "redux": "3.7.2",
     "rollup": "0.57.0",
     "rollup-plugin-babel": "3.0.3",
-    "semantic-release": "15.0.3",
+    "semantic-release": "15.1.2",
     "sinon": "4.4.6",
     "validate-commit-msg": "2.14.0",
     "vision": "4.1.1",
