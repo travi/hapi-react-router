@@ -57,7 +57,7 @@
     "boom": "6.0.0",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
-    "codecov": "3.0.0",
+    "codecov": "3.0.1",
     "cross-env": "5.1.4",
     "cucumber": "3.2.1",
     "cz-conventional-changelog": "2.1.0",
