@@ -19,7 +19,7 @@ suite('router-wrapper', () => {
   const request = {raw: {req: {url}}};
 
   setup(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 
     sandbox.stub(routeMatcher, 'default');
     sandbox.stub(dataFetcher, 'default');

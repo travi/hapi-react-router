@@ -14,7 +14,7 @@ suite('route matcher', () => {
   const url = any.string();
 
   setup(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 
     sandbox.stub(reactRouter, 'createMemoryHistory').returns({createLocation});
     sandbox.stub(reactRouter, 'match');
