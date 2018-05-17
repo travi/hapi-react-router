@@ -7,7 +7,7 @@ export default {
     babel({
       babelrc: false,
       exclude: ['./node_modules/**'],
-      presets: ['es2015-rollup', 'stage-3', 'react']
+      presets: [['travi', {targets: {node: 8, browser: true}, react: true, modules: false}]]
     })
   ],
   targets: [
