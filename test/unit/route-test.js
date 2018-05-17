@@ -29,12 +29,13 @@ suite('route', () => {
     const auth = {credentials: any.simpleObject()};
     const request = {...any.simpleObject(), auth};
     const reply = any.simpleObject();
+    const server = {route};
     const Root = any.simpleObject();
     const store = any.simpleObject();
     const configureStore = sinon.stub();
-    configureStore.withArgs({session: {auth: auth.credentials}}).returns(store);
+    configureStore.withArgs({session: {auth: auth.credentials}, server}).returns(store);
 
-    register({route}, {respond, routes, Root, configureStore}, next);
+    register(server, {respond, routes, Root, configureStore}, next);
 
     assert.calledOnce(next);
     assert.calledWith(route, sinon.match({
