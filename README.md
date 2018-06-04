@@ -16,6 +16,9 @@
 $ npm install @travi/hapi-react-router -S
 ```
 
+:warning: this plugin expects [external babel-helpers](https://babeljs.io/docs/plugins/external-helpers/)
+to be provided by the consumer
+
 ### Register with your [Hapi](https://hapijs.com) v17 server
 
 Include this plugin in the [manifest](https://github.com/hapijs/glue) of your
