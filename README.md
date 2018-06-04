@@ -1,23 +1,22 @@
 # hapi-react-router
 
-hapi route to delegate routing for html content to react-router
+[hapi](https://hapijs.com) route to delegate routing for html content to react-router
 
-[![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
-[![license](https://img.shields.io/github/license/travi/hapi-react-router.svg)](LICENSE)
 [![Build Status](https://img.shields.io/travis/travi/hapi-react-router.svg?style=flat&branch=master)](https://travis-ci.org/travi/hapi-react-router)
 [![Codecov](https://img.shields.io/codecov/c/github/travi/hapi-react-router.svg)](https://codecov.io/github/travi/hapi-react-router)
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Greenkeeper badge](https://badges.greenkeeper.io/travi/hapi-react-router.svg)](https://greenkeeper.io/)
+## Usage
 
-## Installation
+[![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
+[![license](https://img.shields.io/github/license/travi/hapi-react-router.svg)](LICENSE)
+
+### Installation
 
 ```sh
 $ npm install @travi/hapi-react-router -S
 ```
 
-## Usage
+### Register with your [Hapi](https://hapijs.com) v17 server
 
 Include this plugin in the [manifest](https://github.com/hapijs/glue) of your
 hapi application to direct all requests to `/html` to a server-side renderer
@@ -30,19 +29,16 @@ will be triggered and rendering will wait for all related requests to complete.
 This enables populating the data store based on the components that are mounted
 for the current route.
 
-:warning: [a regenerator runtime](https://babeljs.io/docs/plugins/transform-regenerator/)
-is required since this package leverages async functions
-
 ### Example
 
 ```js
 export default {
-    connections: [{port: 8090}],
-    registrations: [
-        {plugin: '@travi/hapi-html-request-router'},
-        {
-            plugin: {
-                register: '@travi/hapi-react-router',
+    server: {port: process.env.PORT},
+    register: {
+        plugins: [
+            {plugin: '@travi/hapi-html-request-router'},
+            {
+                plugin: '@travi/hapi-react-router',
                 options: {
                     respond: (reply, {renderedContent}) => {
                         reply.view('layout', {renderedContent});
@@ -63,8 +59,8 @@ export default {
                     configureStore: ({session}) => createStore(reducer, composeMiddlewares(session))
                 }
             }
-        }
-    ]
+        ]
+    }
 }
 ```
 
@@ -90,7 +86,11 @@ required.
   so that your component can inject it into the context through a provider
   component.
 
-## Local Development
+## Contribution
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Greenkeeper badge](https://badges.greenkeeper.io/travi/hapi-react-router.svg)](https://greenkeeper.io/)
 
 ### Install dependencies
 

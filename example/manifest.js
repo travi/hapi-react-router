@@ -1,24 +1,30 @@
 import {createStore} from 'redux';
+import mustache from 'mustache';
 import respond from './respond';
 import routes from './routes';
 import Root from './components/root';
 
 export default {
-  connections: [{port: 8090}],
-  registrations: [
-    {plugin: 'vision'},
-    {
-      plugin: {
-        register: 'visionary',
+  server: {port: 8090},
+  register: {
+    plugins: [
+      {
+        plugin: 'vision',
         options: {
-          engines: {mustache: 'hapi-mustache'},
+          engines: {
+            mustache: {
+              compile: template => {
+                mustache.parse(template);
+
+                return context => mustache.render(template, context);
+              }
+            }
+          },
           path: './example'
         }
-      }
-    },
-    {
-      plugin: {
-        register: 'good',
+      },
+      {
+        plugin: 'good',
         options: {
           ops: {
             interval: 1000
@@ -35,14 +41,12 @@ export default {
             ]
           }
         }
-      }
-    },
-    {plugin: '@travi/hapi-html-request-router'},
-    {
-      plugin: {
-        register: '../src/route',
+      },
+      {plugin: '@travi/hapi-html-request-router'},
+      {
+        plugin: '../src/route',
         options: {respond, routes, Root, configureStore: () => createStore(() => undefined)}
       }
-    }
-  ]
+    ]
+  }
 };

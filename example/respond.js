@@ -1,5 +1,5 @@
-export default function respond(reply, {renderedContent, status}) {
-  reply.view('layout', {
+export default function respond(h, {renderedContent, status}) {
+  return h.view('layout', {
     renderedContent,
     title: '<title>Example Title</title>'
   }).code(status);

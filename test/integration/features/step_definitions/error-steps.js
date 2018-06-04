@@ -1,30 +1,25 @@
-import {defineSupportCode} from 'cucumber';
+import {When, Then} from 'cucumber';
 import {assert} from 'chai';
 import {NOT_FOUND, INTERNAL_SERVER_ERROR} from 'http-status-codes';
-import {World} from '../support/world';
 
-defineSupportCode(({When, Then, setWorldConstructor}) => {
-  setWorldConstructor(World);
+When('a request is made for a route that does not exist', function () {
+  return this.makeRequest({url: '/missing'});
+});
 
-  When('a request is made for a route that does not exist', function () {
-    return this.makeRequest({url: '/missing'});
-  });
+When('a request is made for a route that fails to load data', function () {
+  return this.makeRequest({url: '/server-error'});
+});
 
-  When('a request is made for a route that fails to load data', function () {
-    return this.makeRequest({url: '/server-error'});
-  });
+Then('a not-found response is returned', function (callback) {
+  assert.equal(this.serverResponse.statusCode, NOT_FOUND);
+  assert.equal(this.serverResponse.headers['content-type'], 'text/html; charset=utf-8');
+  assert.include(this.serverResponse.payload, 'Page Not Found');
 
-  Then('a not-found response is returned', function (callback) {
-    assert.equal(this.serverResponse.statusCode, NOT_FOUND);
-    assert.equal(this.serverResponse.headers['content-type'], 'text/html; charset=utf-8');
-    assert.include(this.serverResponse.payload, 'Page Not Found');
+  callback();
+});
 
-    callback();
-  });
+Then('a server-error response is returned', function (callback) {
+  assert.equal(this.serverResponse.statusCode, INTERNAL_SERVER_ERROR);
 
-  Then('a server-error response is returned', function (callback) {
-    assert.equal(this.serverResponse.statusCode, INTERNAL_SERVER_ERROR);
-
-    callback();
-  });
+  callback();
 });

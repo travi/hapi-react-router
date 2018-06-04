@@ -5,8 +5,9 @@ import {Route, Redirect} from 'react-router';
 import {provideHooks} from 'redial';
 import hapi from 'hapi';
 import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
+import mustache from 'mustache';
 import any from '@travi/any';
-import {defineSupportCode} from 'cucumber';
+import {setWorldConstructor, Before} from 'cucumber';
 import {World} from '../support/world';
 
 const reducer = (state, action) => {
@@ -18,7 +19,7 @@ const reducer = (state, action) => {
 };
 
 function respond(reply, {renderedContent, status}) {
-  reply.view('layout', {renderedContent}).code(status);
+  return reply.view('layout', {renderedContent}).code(status);
 }
 
 function Root({children, store}) {
@@ -32,6 +33,7 @@ function Wrap({children}) {
 function NotFound() {
   return <p>Page Not Found</p>;
 }
+
 NotFound.displayName = 'NotFound';
 
 function ServerError() {
@@ -46,78 +48,74 @@ function Existing({dataPoint}) {
   return <div>{dataPoint}</div>;
 }
 
-defineSupportCode(({Before, setWorldConstructor}) => {
-  setWorldConstructor(World);
+setWorldConstructor(World);
 
-  let dataPoint;
+let dataPoint;
 
-  const ConnectedExisting = connect(state => ({dataPoint: state.dataPoint}))(provideHooks({
-    fetch({dispatch}) {
-      return new Promise(resolve => setTimeout(() => {
-        dispatch({type: 'loaded-existing-data', dataPoint});
-        resolve();
-      }, 1000));
-    }
-  })(Existing));
+const ConnectedExisting = connect(state => ({dataPoint: state.dataPoint}))(provideHooks({
+  fetch({dispatch}) {
+    return new Promise(resolve => setTimeout(() => {
+      dispatch({type: 'loaded-existing-data', dataPoint});
+      resolve();
+    }, 1000));
+  }
+})(Existing));
 
-  const routes = (
-    <Route path="/" component={Wrap}>
-      <Route path="existing-route" component={ConnectedExisting} />
-      <Route path="server-error" component={ConnectedError} />
-      <Redirect from="temporary-redirect" to="/existing-route" state={{status: MOVED_TEMPORARILY}} />
-      <Redirect from="permanent-redirect" to="/existing-route" state={{status: MOVED_PERMANENTLY}} />
-      <Redirect from="redirect" to="/existing-route" />
-      <Route path="*" component={NotFound} />
-    </Route>
-  );
+const routes = (
+  <Route path="/" component={Wrap}>
+    <Route path="existing-route" component={ConnectedExisting} />
+    <Route path="server-error" component={ConnectedError} />
+    <Redirect from="temporary-redirect" to="/existing-route" state={{status: MOVED_TEMPORARILY}} />
+    <Redirect from="permanent-redirect" to="/existing-route" state={{status: MOVED_PERMANENTLY}} />
+    <Redirect from="redirect" to="/existing-route" />
+    <Route path="*" component={NotFound} />
+  </Route>
+);
 
-  Before(function () {
-    this.dataPoint = any.word();
-    dataPoint = this.dataPoint;     // eslint-disable-line prefer-destructuring
+Before(async function () {
+  this.dataPoint = any.word();
+  dataPoint = this.dataPoint;     // eslint-disable-line prefer-destructuring
 
-    if (!this.server) {
-      this.server = new hapi.Server();
-      this.server.connection();
+  if (!this.server) {
+    this.server = hapi.server();
 
-      return new Promise((resolve, reject) => {
-        this.server.register([
-          {register: require('@travi/hapi-html-request-router')},
-          {
-            register: require('../../../../src/route'),
-            options: {respond, routes, Root, configureStore: () => createStore(reducer)}
-          },
-          {register: require('vision')},
-          {
-            register: require('good'),
-            options: {
-              reporters: {
-                console: [
-                  {
-                    module: 'good-squeeze',
-                    name: 'Squeeze',
-                    args: [{log: '*', request: '*', response: '*', error: '*'}]
-                  },
-                  {module: 'good-console'},
-                  'stdout'
-                ]
+    await this.server.register([
+      {plugin: require('@travi/hapi-html-request-router')},
+      {
+        plugin: require('../../../../src/route'),
+        options: {respond, routes, Root, configureStore: () => createStore(reducer)}
+      },
+      {
+        plugin: require('vision'),
+        options: {
+          engines: {
+            mustache: {
+              compile: template => {
+                mustache.parse(template);
+
+                return context => mustache.render(template, context);
               }
             }
+          },
+          path: './example'
+        }
+      },
+      {
+        plugin: require('good'),
+        options: {
+          reporters: {
+            console: [
+              {
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{log: '*', request: '*', response: '*', error: '*'}]
+              },
+              {module: 'good-console'},
+              'stdout'
+            ]
           }
-        ], err => {
-          if (err) reject(err);
-          else {
-            this.server.views({
-              engines: {mustache: require('hapi-mustache')},
-              relativeTo: __dirname,
-              path: '../../../../example'
-            });
-
-            resolve();
-          }
-        });
-      });
-    }
-
-    return Promise.resolve();
-  });
+        }
+      }
+    ]);
+  }
 });

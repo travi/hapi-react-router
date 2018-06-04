@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import {register} from '../../src/route';
+import {plugin} from '../../src/route';
 import * as routerWrapper from '../../src/router-wrapper';
 
 suite('route', () => {
@@ -16,13 +16,10 @@ suite('route', () => {
   teardown(() => sandbox.restore());
 
   test('that the plugin is defined', () => {
-    assert.deepEqual(register.attributes, {
-      pkg: require('../../package.json')
-    });
+    assert.deepEqual(plugin.pkg, require('../../package.json'));
   });
 
-  test('that the request for html is handled', () => {
-    const next = sinon.spy();
+  test('that the request for html is handled', async () => {
     const route = sinon.stub();
     const respond = sinon.spy();
     const routes = sinon.spy();
@@ -35,9 +32,8 @@ suite('route', () => {
     const configureStore = sinon.stub();
     configureStore.withArgs({session: {auth: auth.credentials}, server}).returns(store);
 
-    register(server, {respond, routes, Root, configureStore}, next);
+    await plugin.register(server, {respond, routes, Root, configureStore});
 
-    assert.calledOnce(next);
     assert.calledWith(route, sinon.match({
       method: 'GET',
       path: '/html'

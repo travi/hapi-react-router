@@ -6,27 +6,25 @@ import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
 import matchRoute from './route-matcher';
 import fetchData from './data-fetcher';
 
-export default async function renderThroughReactRouter(request, reply, {routes, respond, Root, store}) {
+export default async function renderThroughReactRouter(request, h, {routes, respond, Root, store}) {
   try {
     const {renderProps, status, redirectLocation} = await matchRoute(request.raw.req.url, routes);
 
     if (redirectLocation) {
       const state = redirectLocation.state || {};
+
       switch (state.status) {
         case MOVED_PERMANENTLY:
-          reply.redirect(redirectLocation.pathname).permanent();
-          break;
+          return h.redirect(redirectLocation.pathname).permanent();
         case MOVED_TEMPORARILY:
-          reply.redirect(redirectLocation.pathname).temporary();
-          break;
+          return h.redirect(redirectLocation.pathname).temporary();
         default:
-          reply.redirect(redirectLocation.pathname).temporary();
-          break;
+          return h.redirect(redirectLocation.pathname).temporary();
       }
     } else {
       await fetchData({renderProps, store});
 
-      respond(reply, {
+      return respond(h, {
         store,
         status,
         renderedContent: renderToString((
@@ -37,6 +35,6 @@ export default async function renderThroughReactRouter(request, reply, {routes, 
       });
     }
   } catch (e) {
-    reply(Boom.wrap(e));
+    throw Boom.wrap(e);
   }
 }

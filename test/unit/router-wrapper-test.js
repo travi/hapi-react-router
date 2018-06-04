@@ -17,6 +17,7 @@ suite('router-wrapper', () => {
   const store = any.simpleObject();
   const url = any.string();
   const request = {raw: {req: {url}}};
+  const redirectResponse = any.simpleObject();
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -31,27 +32,26 @@ suite('router-wrapper', () => {
   teardown(() => sandbox.restore());
 
   test('that response contains the rendered content when the react-router route matches', () => {
-    const respond = sinon.spy();
+    const respond = sinon.stub();
     const reply = sinon.spy();
     const renderProps = any.simpleObject();
     const status = any.integer();
     const context = any.simpleObject();
     const rootComponent = any.simpleObject();
     const renderedContent = any.string();
+    const response = any.string();
     routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
     dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
     React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
     React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
     domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
+    respond.withArgs(reply, {renderedContent, store, status}).returns(response);
 
-    return renderThroughReactRouter(request, reply, {routes, respond, Root, store}).then(() => {
-      assert.notCalled(reply);
-      assert.calledWith(respond, reply, {renderedContent, store, status});
-    });
+    return assert.becomes(renderThroughReactRouter(request, reply, {routes, respond, Root, store}), response);
   });
 
   test('that a temporary redirect results when a redirectLocation is defined with a 302 status', () => {
-    const respond = sinon.spy();
+    const respond = sinon.stub();
     const redirect = sinon.stub();
     const temporary = sinon.stub();
     const permanent = sinon.stub();
@@ -59,11 +59,14 @@ suite('router-wrapper', () => {
     const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_TEMPORARILY}};
     routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
     redirect.withArgs(redirectPathname).returns({temporary, permanent});
+    temporary.returns(redirectResponse);
 
-    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+    return assert.becomes(
+      renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}),
+      redirectResponse
+    ).then(() => {
       assert.notCalled(respond);
       assert.notCalled(permanent);
-      assert.called(temporary);
     });
   });
 
@@ -76,11 +79,14 @@ suite('router-wrapper', () => {
     const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_PERMANENTLY}};
     routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
     redirect.withArgs(redirectPathname).returns({temporary, permanent});
+    permanent.returns(redirectResponse);
 
-    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+    return assert.becomes(
+      renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}),
+      redirectResponse
+    ).then(() => {
       assert.notCalled(respond);
       assert.notCalled(temporary);
-      assert.called(permanent);
     });
   });
 
@@ -93,11 +99,14 @@ suite('router-wrapper', () => {
     const redirectLocation = {pathname: redirectPathname};
     routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
     redirect.withArgs(redirectPathname).returns({temporary, permanent});
+    temporary.returns(redirectResponse);
 
-    return renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}).then(() => {
+    return assert.becomes(
+      renderThroughReactRouter(request, {redirect}, {routes, respond, Root, store}),
+      redirectResponse
+    ).then(() => {
       assert.notCalled(respond);
       assert.notCalled(permanent);
-      assert.called(temporary);
     });
   });
 
@@ -108,8 +117,6 @@ suite('router-wrapper', () => {
     routeMatcher.default.rejects(error);
     Boom.wrap.withArgs(error).returns(wrappedError);
 
-    return renderThroughReactRouter({raw: {req: {url: any.string()}}}, reply, {}).then(() => {
-      assert.calledWith(reply, wrappedError);
-    });
+    return assert.isRejected(renderThroughReactRouter({raw: {req: {url: any.string()}}}, reply, {}), wrappedError);
   });
 });
