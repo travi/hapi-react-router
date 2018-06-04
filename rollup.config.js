@@ -2,7 +2,15 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-  entry: 'src/route.js',
+  input: 'src/route.js',
+  external: [
+    'react',
+    'react-dom/server',
+    'react-router',
+    'boom',
+    'http-status-codes',
+    'redial'
+  ],
   plugins: [
     babel({
       babelrc: false,
@@ -10,8 +18,8 @@ export default {
       presets: [['travi', {targets: {node: 8, browser: true}, react: true, modules: false}]]
     })
   ],
-  targets: [
-    {dest: 'lib/plugin.cjs.js', format: 'cjs'},
-    {dest: 'lib/plugin.es.js', format: 'es'}
+  output: [
+    {file: 'lib/plugin.cjs.js', format: 'cjs'},
+    {file: 'lib/plugin.es.js', format: 'es'}
   ]
 };
