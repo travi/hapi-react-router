@@ -22,8 +22,7 @@
     "preversion": "npm test",
     "commitmsg": "validate-commit-msg",
     "precommit": "npm test",
-    "presemantic-release": "npm run build",
-    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build",
     "greenkeeper:update-lockfile": "greenkeeper-lockfile-update",
     "greenkeeper:upload-lockfile": "greenkeeper-lockfile-upload"
   },
@@ -84,7 +83,6 @@
     "redux": "4.0.0",
     "rollup": "0.59.4",
     "rollup-plugin-babel": "3.0.4",
-    "semantic-release": "^15.5.0",
     "sinon": "^5.0.10",
     "validate-commit-msg": "2.14.0",
     "vision": "^4.1.1",

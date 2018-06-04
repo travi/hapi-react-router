@@ -3,14 +3,16 @@ notifications:
   email: false
 after_install: npm ls >/dev/null
 before_script: npm run greenkeeper:update-lockfile
-script:
-  - npm test
-  - npm run semantic-release
+script: npm test
 after_script: npm run greenkeeper:upload-lockfile
 after_success: npm run coverage:report
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: npx semantic-release
 env:
   global:
     secure: k2cvqESHpN6eOaWcVP+JCojk1kaV3ufjNsrhWAR68GDLFaDox7DvKhh7e3uv7Xxw3f4m4X1ZBS8sQMjdatPUfbQ6mLzD4/a+UoeM/uLfQrzcKy7JTAPM4rU8DsBzgbsfe8oGzf4K7pOXoErIJ4J1mzp/8bRopQcN96N9iwuJNcnSZcO4ygWPD75TC1PCisUc0smlH+ceWrjFaglts2fLPBmEZpC98BYx/69vbMH0eR3t14luMOWD/CvyIeGVd88l7AmxdzTRGiZ9S9EVVQp2+5TXOY8f0J2RSJ0xwso0YqeFgPcxaE+yaS3OjSx6dLqaDniBQdu+29xpLUMpB8fi/e9QN0nncBxLFM/9g7E51Bjl+GDsrRM5GEJUaTm7XhZq27orbE2rZ4a026O1jEB10vLpQHyPELpKBYm+9sEgc+y2MSxN8uOnNeeJY3pwUpM0391Q2wmzBtvOokErMHShP9ClJKKyIqdmjbFGJojHrRsgAUzr96IJAdiYRLV/o4wR0kKJyI7+5/gatwOaV5i2E+bh48H1Uftx5Mscai6gEim4F/3W9bWvjBKmSeI43Eql3MXfGDogpZktdLp9IWGF1mcbqxJ6KNf63VT1l15DZ3jozZpvVg2nt5HOjdPNc1n4AEqf9HbxxMGbdaf/JBhzHPscju+ZiE9ulKZzcUF82ew=
