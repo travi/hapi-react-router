@@ -80,7 +80,7 @@
     "react-router": "^3.2.1",
     "redial": "0.5.0",
     "redux": "4.0.0",
-    "rollup": "0.60.3",
+    "rollup": "0.60.4",
     "rollup-plugin-babel": "3.0.4",
     "sinon": "^6.0.0",
     "validate-commit-msg": "2.14.0",
