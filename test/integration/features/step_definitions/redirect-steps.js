@@ -8,7 +8,9 @@ When(/^a request is made for a route that (.*) redirects to another route$/, fun
   if ('temporarily' === expectedRedirectType) {
     redirectType = MOVED_TEMPORARILY;
     return this.makeRequest({url: '/temporary-redirect'});
-  } else if ('permanently' === expectedRedirectType) {
+  }
+
+  if ('permanently' === expectedRedirectType) {
     redirectType = MOVED_PERMANENTLY;
     return this.makeRequest({url: '/permanent-redirect'});
   }
