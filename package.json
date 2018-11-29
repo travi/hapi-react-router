@@ -57,7 +57,7 @@
     "chai-as-promised": "7.1.1",
     "codecov": "3.1.0",
     "cross-env": "5.1.6",
-    "cucumber": "^5.0.0",
+    "cucumber": "^5.0.2",
     "cz-conventional-changelog": "2.1.0",
     "globstar": "1.0.0",
     "glue": "5.0.0",
