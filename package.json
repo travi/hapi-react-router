@@ -22,9 +22,7 @@
     "preversion": "npm test",
     "commitmsg": "validate-commit-msg",
     "precommit": "npm test",
-    "prepublishOnly": "npm run build",
-    "greenkeeper:update-lockfile": "greenkeeper-lockfile-update",
-    "greenkeeper:upload-lockfile": "greenkeeper-lockfile-upload"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -64,7 +62,6 @@
     "good": "^8.1.1",
     "good-console": "^7.1.0",
     "good-squeeze": "5.1.0",
-    "greenkeeper-lockfile": "1.15.1",
     "hapi": "^17.8.1",
     "husky": "^1.2.0",
     "markdownlint-cli": "0.13.0",
