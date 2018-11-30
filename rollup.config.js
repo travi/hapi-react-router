@@ -15,8 +15,8 @@ export default {
     babel({
       babelrc: false,
       exclude: ['./node_modules/**'],
-      presets: [['travi', {targets: {node: 8, browser: true}, react: true, modules: false}]],
-      plugins: ['external-helpers']
+      presets: [['@travi', {targets: {node: 8, browser: true}, react: true, modules: false}]],
+      plugins: ['@babel/external-helpers']
     })
   ],
   output: [
