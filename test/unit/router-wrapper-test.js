@@ -38,14 +38,14 @@ suite('router-wrapper', () => {
     const status = any.integer();
     const context = any.simpleObject();
     const rootComponent = any.simpleObject();
-    const renderedContent = any.string();
+    const html = any.string();
     const response = any.string();
     routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
     dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
     React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
     React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
-    domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
-    respond.withArgs(reply, {renderedContent, store, status}).returns(response);
+    domServer.renderToString.withArgs(rootComponent).returns(html);
+    respond.withArgs(reply, {renderedContent: {html}, store, status}).returns(response);
 
     return assert.becomes(renderThroughReactRouter(request, reply, {routes, respond, Root, store}), response);
   });
