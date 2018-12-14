@@ -11,6 +11,8 @@ deploy:
   provider: script
   skip_cleanup: true
   script: npx semantic-release@beta
+  on:
+    all_branches: true
 env:
   global:
   - FORCE_COLOR=1
