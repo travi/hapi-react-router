@@ -1,12 +1,10 @@
-import React from 'react';
-import {RouterContext} from 'react-router';
-import domServer from 'react-dom/server';
-import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
+import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
 import Boom from 'boom';
 import renderThroughReactRouter from '../../src/router-wrapper';
+import * as defaultRenderFactory from '../../src/default-render-factory';
 import * as routeMatcher from '../../src/route-matcher';
 import * as dataFetcher from '../../src/data-fetcher';
 
@@ -25,8 +23,7 @@ suite('router-wrapper', () => {
     sandbox.stub(routeMatcher, 'default');
     sandbox.stub(dataFetcher, 'default');
     sandbox.stub(Boom, 'wrap');
-    sandbox.stub(React, 'createElement');
-    sandbox.stub(domServer, 'renderToString');
+    sandbox.stub(defaultRenderFactory, 'default');
   });
 
   teardown(() => sandbox.restore());
@@ -36,18 +33,34 @@ suite('router-wrapper', () => {
     const reply = sinon.spy();
     const renderProps = any.simpleObject();
     const status = any.integer();
-    const context = any.simpleObject();
-    const rootComponent = any.simpleObject();
-    const renderedContent = any.string();
+    const html = any.string();
     const response = any.string();
+    const defaultRender = sinon.stub();
     routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
     dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
-    React.createElement.withArgs(RouterContext, sinon.match(renderProps)).returns(context);
-    React.createElement.withArgs(Root, {request, store}).returns(rootComponent);
-    domServer.renderToString.withArgs(rootComponent).returns(renderedContent);
-    respond.withArgs(reply, {renderedContent, store, status}).returns(response);
+    defaultRender.returns(html);
+    defaultRenderFactory.default.withArgs(request, store, renderProps, Root).returns(defaultRender);
+    respond.withArgs(reply, {renderedContent: {html}, store, status}).returns(response);
 
     return assert.becomes(renderThroughReactRouter(request, reply, {routes, respond, Root, store}), response);
+  });
+
+  test('that response contains the custom-rendered content when a custom renderer is provided', async () => {
+    const respond = sinon.stub();
+    const reply = sinon.spy();
+    const renderProps = any.simpleObject();
+    const status = any.integer();
+    const response = any.string();
+    const render = sinon.stub();
+    const renderedContent = any.simpleObject();
+    const defaultRender = () => undefined;
+    routeMatcher.default.withArgs(url, routes).resolves({renderProps, status});
+    dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
+    respond.withArgs(reply, {renderedContent, store, status}).returns(response);
+    defaultRenderFactory.default.withArgs(request, store, renderProps, Root).returns(defaultRender);
+    render.withArgs(defaultRender).returns(renderedContent);
+
+    assert.equal(await renderThroughReactRouter(request, reply, {render, routes, respond, Root, store}), response);
   });
 
   test('that a temporary redirect results when a redirectLocation is defined with a 302 status', () => {

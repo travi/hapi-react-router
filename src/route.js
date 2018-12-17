@@ -8,6 +8,7 @@ export const plugin = {
       method: 'GET',
       path: '/html',
       handler: (request, h) => renderThroughReactRouter(request, h, {
+        render: options.render,
         routes: options.routes,
         respond: options.respond,
         Root: options.Root,
