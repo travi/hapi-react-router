@@ -20,7 +20,7 @@
     "start": "cross-env BABEL_ENV=example babel-node ./example/app.js",
     "build": "rollup -c",
     "preversion": "npm test",
-    "commitmsg": "validate-commit-msg",
+    "commitmsg": "commitlint -e",
     "precommit": "npm test",
     "prepack": "npm run build"
   },
@@ -54,6 +54,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "7.1.1",
     "codecov": "3.1.0",
+    "commitlint-config-travi": "^1.2.31",
     "cross-env": "^5.2.0",
     "cucumber": "^5.0.3",
     "cz-conventional-changelog": "2.1.0",
@@ -80,7 +81,6 @@
     "rollup": "^0.68.0",
     "rollup-plugin-babel": "^4.1.0",
     "sinon": "^7.2.2",
-    "validate-commit-msg": "2.14.0",
     "vision": "^5.4.3"
   },
   "peerDependencies": {
