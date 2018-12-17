@@ -20,6 +20,7 @@ suite('route', () => {
   });
 
   test('that the request for html is handled', async () => {
+    const render = () => undefined;
     const route = sinon.stub();
     const respond = sinon.spy();
     const routes = sinon.spy();
@@ -32,7 +33,7 @@ suite('route', () => {
     const configureStore = sinon.stub();
     configureStore.withArgs({session: {auth: auth.credentials}, server}).returns(store);
 
-    await plugin.register(server, {respond, routes, Root, configureStore});
+    await plugin.register(server, {render, respond, routes, Root, configureStore});
 
     assert.calledWith(route, sinon.match({
       method: 'GET',
@@ -41,6 +42,6 @@ suite('route', () => {
 
     route.yieldTo('handler', request, reply);
 
-    assert.calledWith(routerWrapper.default, request, reply, {routes, respond, Root, store});
+    assert.calledWith(routerWrapper.default, request, reply, {render, routes, respond, Root, store});
   });
 });
