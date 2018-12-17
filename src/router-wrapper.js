@@ -1,12 +1,10 @@
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import {RouterContext} from 'react-router';
 import Boom from 'boom';
 import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
 import matchRoute from './route-matcher';
 import fetchData from './data-fetcher';
+import defaultRenderFactory from './default-render-factory';
 
-export default async function renderThroughReactRouter(request, h, {routes, respond, Root, store}) {
+export default async function renderThroughReactRouter(request, h, {render, routes, respond, Root, store}) {
   try {
     const {renderProps, status, redirectLocation} = await matchRoute(request.raw.req.url, routes);
 
@@ -24,16 +22,12 @@ export default async function renderThroughReactRouter(request, h, {routes, resp
     } else {
       await fetchData({renderProps, store});
 
+      const defaultRender = defaultRenderFactory(request, store, renderProps, Root);
+
       return respond(h, {
         store,
         status,
-        renderedContent: {
-          html: renderToString((
-            <Root request={request} store={store}>
-              <RouterContext {...renderProps} />
-            </Root>
-          ))
-        }
+        renderedContent: render ? render(defaultRender) : {html: defaultRender()}
       });
     }
   } catch (e) {
