@@ -63,7 +63,7 @@
     "good": "^8.1.1",
     "good-console": "^7.1.0",
     "good-squeeze": "5.1.0",
-    "hapi": "^17.8.1",
+    "hapi": "^18.0.0",
     "husky": "^1.2.1",
     "markdownlint-cli": "0.13.0",
     "material-ui": "0.20.2",
