@@ -59,7 +59,7 @@
     "cucumber": "^5.0.3",
     "cz-conventional-changelog": "2.1.0",
     "globstar": "1.0.0",
-    "glue": "5.0.0",
+    "glue": "6.0.0",
     "good": "^8.1.1",
     "good-console": "^7.1.0",
     "good-squeeze": "5.1.0",
