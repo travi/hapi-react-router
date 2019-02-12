@@ -61,7 +61,7 @@
     "globstar": "1.0.0",
     "glue": "5.0.0",
     "good": "^8.1.1",
-    "good-console": "^7.1.0",
+    "good-console": "^8.0.0",
     "good-squeeze": "5.1.0",
     "hapi": "^18.0.0",
     "husky": "^1.2.1",
