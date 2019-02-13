@@ -53,7 +53,7 @@
     "boom": "^6.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "7.1.1",
-    "codecov": "3.1.0",
+    "codecov": "3.2.0",
     "commitlint-config-travi": "^1.2.31",
     "cross-env": "^5.2.0",
     "cucumber": "^5.0.3",
