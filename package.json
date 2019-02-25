@@ -65,7 +65,7 @@
     "good-squeeze": "5.1.0",
     "hapi": "^18.0.0",
     "husky": "^1.2.1",
-    "markdownlint-cli": "0.13.0",
+    "markdownlint-cli": "0.14.0",
     "material-ui": "0.20.2",
     "mocha": "6.0.0",
     "mustache": "^3.0.1",
