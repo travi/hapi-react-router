@@ -74,7 +74,7 @@
     "prop-types": "15.7.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-redux": "^6.0.0",
+    "react-redux": "^7.0.0",
     "react-router": "^3.2.1",
     "redial": "0.5.0",
     "redux": "^4.0.1",
