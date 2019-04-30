@@ -46,7 +46,7 @@
     "@babel/node": "^7.2.0",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/register": "^7.0.0",
-    "@travi/any": "1.8.5",
+    "@travi/any": "1.8.6",
     "@travi/babel-preset": "^2.1.0-beta.1",
     "@travi/eslint-config-travi": "1.8.0",
     "@travi/hapi-html-request-router": "^2.0.0",
