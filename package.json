@@ -48,7 +48,7 @@
     "@babel/register": "^7.0.0",
     "@travi/any": "1.8.5",
     "@travi/babel-preset": "^2.1.0-beta.1",
-    "@travi/eslint-config-travi": "1.8.0",
+    "@travi/eslint-config-travi": "1.8.1",
     "@travi/hapi-html-request-router": "^2.0.0",
     "boom": "^6.0.0",
     "chai": "^4.2.0",
