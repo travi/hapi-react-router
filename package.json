@@ -57,7 +57,7 @@
     "commitlint-config-travi": "^1.2.31",
     "cross-env": "^5.2.0",
     "cucumber": "^5.0.3",
-    "cz-conventional-changelog": "2.1.0",
+    "cz-conventional-changelog": "3.0.0",
     "globstar": "1.0.0",
     "glue": "5.0.0",
     "good": "^8.1.1",
