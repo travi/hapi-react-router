@@ -10,6 +10,7 @@ suite('default-render factory', () => {
   let sandbox;
   const Root = any.simpleObject();
   const store = any.simpleObject();
+  const context = any.simpleObject();
 
   setup(() => {
     sandbox = sinon.createSandbox();
