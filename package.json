@@ -90,7 +90,9 @@
     "react-router": "^3.0.5",
     "redial": "^0.5.0"
   },
-  "optionalDependencies": {},
+  "optionalDependencies": {
+    "@travi/hapi-html-request-router": "^3.0.0"
+  },
   "publishConfig": {
     "access": "public"
   },
