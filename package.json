@@ -49,7 +49,7 @@
     "@travi/any": "^2.0.3",
     "@travi/babel-preset": "^3.0.0",
     "@travi/eslint-config-travi": "^1.8.3",
-    "@travi/hapi-html-request-router": "^2.0.0",
+    "@travi/hapi-html-request-router": "^3.0.0",
     "boom": "^6.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "7.1.1",
