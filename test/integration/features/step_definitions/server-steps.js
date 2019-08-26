@@ -3,7 +3,7 @@ import {createStore} from 'redux';
 import {connect, Provider} from 'react-redux';
 import {Route, Redirect} from 'react-router';
 import {provideHooks} from 'redial';
-import hapi from 'hapi';
+import hapi from '@hapi/hapi';
 import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
 import mustache from 'mustache';
 import any from '@travi/any';

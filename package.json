@@ -46,10 +46,11 @@
     "@babel/node": "^7.5.5",
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/register": "^7.5.5",
+    "@hapi/glue": "^6.1.1",
     "@travi/any": "^2.0.3",
     "@travi/babel-preset": "^3.0.0",
     "@travi/eslint-config-travi": "^1.8.4",
-    "@travi/hapi-html-request-router": "^2.0.0",
+    "@travi/hapi-html-request-router": "^3.0.0",
     "boom": "^6.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "7.1.1",
@@ -59,11 +60,9 @@
     "cucumber": "^5.1.0",
     "cz-conventional-changelog": "^3.0.2",
     "globstar": "1.0.0",
-    "glue": "^6.0.0",
     "good": "^8.1.2",
     "good-console": "^8.0.0",
     "good-squeeze": "5.1.0",
-    "hapi": "^18.1.0",
     "husky": "^3.0.4",
     "markdownlint-cli": "^0.18.0",
     "material-ui": "0.20.2",
@@ -85,15 +84,13 @@
   },
   "peerDependencies": {
     "boom": "^6.0.0",
-    "hapi": "^17.0.0",
+    "@hapi/hapi": "^18.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^3.0.5",
     "redial": "^0.5.0"
   },
-  "optionalDependencies": {
-    "@travi/hapi-html-request-router": "^2.0.0"
-  },
+  "optionalDependencies": {},
   "publishConfig": {
     "access": "public"
   },

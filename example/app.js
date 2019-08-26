@@ -1,4 +1,4 @@
-import Glue from 'glue';
+import Glue from '@hapi/glue';
 import manifest from './manifest';
 
 export default Glue.compose(manifest, {relativeTo: __dirname})
