@@ -45,7 +45,7 @@
   "devDependencies": {
     "@babel/node": "^7.6.1",
     "@babel/plugin-external-helpers": "^7.2.0",
-    "@babel/register": "^7.5.5",
+    "@babel/register": "^7.6.0",
     "@hapi/glue": "^6.1.1",
     "@travi/any": "^2.0.3",
     "@travi/babel-preset": "^3.0.0",
