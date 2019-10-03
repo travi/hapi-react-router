@@ -2,7 +2,7 @@ import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 import renderThroughReactRouter from '../../src/router-wrapper';
 import * as defaultRenderFactory from '../../src/default-render-factory';
 import * as routeMatcher from '../../src/route-matcher';
@@ -22,7 +22,7 @@ suite('router-wrapper', () => {
 
     sandbox.stub(routeMatcher, 'default');
     sandbox.stub(dataFetcher, 'default');
-    sandbox.stub(Boom, 'wrap');
+    sandbox.stub(Boom, 'boomify');
     sandbox.stub(defaultRenderFactory, 'default');
   });
 
@@ -128,7 +128,7 @@ suite('router-wrapper', () => {
     const error = new Error('from test');
     const wrappedError = any.simpleObject();
     routeMatcher.default.rejects(error);
-    Boom.wrap.withArgs(error).returns(wrappedError);
+    Boom.boomify.withArgs(error).returns(wrappedError);
 
     return assert.isRejected(renderThroughReactRouter({raw: {req: {url: any.string()}}}, reply, {}), wrappedError);
   });

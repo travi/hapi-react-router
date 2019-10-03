@@ -1,4 +1,4 @@
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
 import matchRoute from './route-matcher';
 import fetchData from './data-fetcher';
@@ -31,6 +31,6 @@ export default async function renderThroughReactRouter(request, h, {render, rout
       });
     }
   } catch (e) {
-    throw Boom.wrap(e);
+    throw Boom.boomify(e);
   }
 }
