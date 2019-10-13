@@ -1,6 +1,0 @@
-extends: '@travi/travi/rules/react'
-
-rules:
-  import/no-extraneous-dependencies:
-    - error
-    - devDependencies: true

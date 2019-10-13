@@ -1,1 +1,17 @@
-extends: '@travi/travi/rules/es6'
+extends:
+  - '@travi'
+  - '@travi/mocha'
+  - '@travi/cucumber'
+
+overrides:
+  - files: example/**/*.js
+    extends: '@travi/react'
+    rules:
+      import/no-extraneous-dependencies:
+        - error
+        - devDependencies: true
+  - files:
+    - src/**/*.js
+    - test/unit/**/*-test.js
+    - test/integration/**/*-steps.js
+    extends: '@travi/react'
