@@ -50,7 +50,7 @@
     "@hapi/glue": "^6.1.1",
     "@travi/any": "^2.0.3",
     "@travi/babel-preset": "^3.0.0",
-    "@travi/eslint-config": "1.0.25",
+    "@travi/eslint-config": "1.0.26",
     "@travi/eslint-config-cucumber": "1.0.3",
     "@travi/eslint-config-mocha": "1.0.5",
     "@travi/eslint-config-react": "1.0.20",
