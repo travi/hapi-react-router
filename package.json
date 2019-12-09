@@ -8,6 +8,7 @@
   "scripts": {
     "lint:js": "eslint .",
     "lint:md": "globstar --node -- markdownlint '**/*.md'",
+    "lint:travis": "travis-lint .travis.yml",
     "tests:unit:no-coverage": "mocha --recursive test/unit",
     "coverage": "nyc run-s tests:unit:no-coverage",
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
@@ -83,6 +84,7 @@
     "rollup": "^1.20.2",
     "rollup-plugin-babel": "^4.3.3",
     "sinon": "^7.4.1",
+    "travis-lint": "^1.0.0",
     "vision": "^5.4.4"
   },
   "peerDependencies": {

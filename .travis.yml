@@ -1,18 +1,11 @@
+version: ~> 1.0
 language: node_js
 notifications:
   email: false
-after_install: npm ls >/dev/null
-script: npm test
+import:
+  - source: travi/.travis-ci:authenticated-semantic-release.yml
+before_script: npm ls >/dev/null
 after_success: npm run coverage:report
-branches:
-  except:
-  - "/^v\\d+\\.\\d+\\.\\d+$/"
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: npx semantic-release@beta
-  on:
-    all_branches: true
 env:
   global:
   - FORCE_COLOR=1
