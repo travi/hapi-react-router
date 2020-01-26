@@ -52,7 +52,7 @@
     "@travi/any": "^2.0.3",
     "@travi/babel-preset": "^3.0.0",
     "@travi/eslint-config": "1.0.31",
-    "@travi/eslint-config-cucumber": "1.0.3",
+    "@travi/eslint-config-cucumber": "1.0.4",
     "@travi/eslint-config-mocha": "1.0.6",
     "@travi/eslint-config-react": "1.0.21",
     "@travi/hapi-html-request-router": "^3.0.0",
