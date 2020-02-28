@@ -22,8 +22,6 @@
     "start": "cross-env BABEL_ENV=example babel-node ./example/app.js",
     "build": "rollup -c",
     "preversion": "npm test",
-    "commitmsg": "commitlint -e",
-    "precommit": "npm test",
     "prepack": "npm run build"
   },
   "repository": {
