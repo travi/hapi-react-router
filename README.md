@@ -6,6 +6,18 @@
 [![Build Status](https://img.shields.io/travis/travi/hapi-react-router.svg?style=flat&branch=master)](https://travis-ci.org/travi/hapi-react-router)
 [![Codecov](https://img.shields.io/codecov/c/github/travi/hapi-react-router.svg)](https://codecov.io/github/travi/hapi-react-router)
 
+## Table of Contents
+
+* [Usage](#usage)
+  * [Installation](#installation)
+  * [Register with your Hapi v18+ server](#register-with-your-hapi-v18-server)
+  * [Example](#example)
+  * [Dependencies for you to provide](#dependencies-for-you-to-provide)
+* [Contribution](#contribution)
+  * [Install dependencies](#install-dependencies)
+  * [Verification](#verification)
+  * [Run the example app](#run-the-example-app)
+
 ## Usage
 
 [![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
