@@ -27,7 +27,7 @@ export default async function renderThroughReactRouter(request, h, {render, rout
       return respond(h, {
         store,
         status,
-        renderedContent: render ? render(defaultRender) : {html: defaultRender()}
+        renderedContent: render ? render(defaultRender, request) : {html: defaultRender()}
       });
     }
   } catch (e) {

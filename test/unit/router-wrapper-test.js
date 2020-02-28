@@ -58,7 +58,7 @@ suite('router-wrapper', () => {
     dataFetcher.default.withArgs({renderProps, store, status}).resolves({renderProps, status});
     respond.withArgs(reply, {renderedContent, store, status}).returns(response);
     defaultRenderFactory.default.withArgs(request, store, renderProps, Root).returns(defaultRender);
-    render.withArgs(defaultRender).returns(renderedContent);
+    render.withArgs(defaultRender, request).returns(renderedContent);
 
     assert.equal(await renderThroughReactRouter(request, reply, {render, routes, respond, Root, store}), response);
   });
