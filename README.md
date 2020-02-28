@@ -1,6 +1,7 @@
 # hapi-react-router
 
-[hapi](https://hapijs.com) route to delegate routing for html content to react-router
+[hapi](https://hapi.dev/) route to delegate routing for html content to
+[react-router](https://github.com/ReactTraining/react-router/tree/v3/docs)
 
 [![Build Status](https://img.shields.io/travis/travi/hapi-react-router.svg?style=flat&branch=master)](https://travis-ci.org/travi/hapi-react-router)
 [![Codecov](https://img.shields.io/codecov/c/github/travi/hapi-react-router.svg)](https://codecov.io/github/travi/hapi-react-router)
@@ -20,7 +21,7 @@ $ npm install @travi/hapi-react-router -S
 :warning: this plugin expects [external babel-helpers](https://babeljs.io/docs/plugins/external-helpers/)
 to be provided by the consumer
 
-### Register with your [Hapi](https://hapijs.com) v17 server
+### Register with your [Hapi](https://hapi.dev/) v18+ server
 
 Include this plugin in the [manifest](https://github.com/hapijs/glue) of your
 hapi application to direct all requests to `/html` to a server-side renderer
@@ -86,9 +87,9 @@ required.
     minification and, therefore, not match in production.
 * `Root`: a react component that will wrap the mounted components that result
   from the matched route
-* `store`: a data store that will be passed as a prop to the `<Root />` component
-  so that your component can inject it into the context through a provider
-  component.
+* `store`: a data store that will be passed as a prop to the `<Root />`
+  component so that your component can inject it into the context through a
+  provider component.
 
 ## Contribution
 
