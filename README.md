@@ -122,6 +122,7 @@ required.
 * `store`: a data store that will be passed as a prop to the `<Root />`
   component so that your component can inject it into the context through a
   provider component.
+* `render`: _optional_ custom renderer to replace the default renderer. Passed `defaultRenderer` and `request` as arguments so additional props can be passed to the defaultRenderer, potentially from the request.
 
 ## Contribution
 
