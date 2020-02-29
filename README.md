@@ -1,7 +1,7 @@
 # hapi-react-router
 
 [hapi](https://hapi.dev/) route to delegate routing for html content to
-[react-router](https://github.com/ReactTraining/react-router/tree/v3/docs)
+[react-router v3](https://github.com/ReactTraining/react-router/tree/v3/docs)
 
 [![Build Status](https://img.shields.io/travis/travi/hapi-react-router.svg?style=flat&branch=master)](https://travis-ci.org/travi/hapi-react-router)
 [![Codecov](https://img.shields.io/codecov/c/github/travi/hapi-react-router.svg)](https://codecov.io/github/travi/hapi-react-router)
@@ -12,6 +12,9 @@
   * [Installation](#installation)
   * [Register with your Hapi v18+ server](#register-with-your-hapi-v18-server)
   * [Example](#example)
+    * [Dependencies:](#dependencies)
+    * [Register with the Hapi server](#register-with-the-hapi-server)
+    * [Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop](#optional-custom-renderer-that-passes-blankie-optional-to-provide-yourself-nonces-as-a-prop)
   * [Dependencies for you to provide](#dependencies-for-you-to-provide)
 * [Contribution](#contribution)
   * [Install dependencies](#install-dependencies)
@@ -48,37 +51,54 @@ for the current route.
 
 ### Example
 
-```js
+#### Dependencies:
+
+```javascript
+import React from 'react';
+import {IndexRoute, Route} from 'react-router';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+```
+
+#### Register with the Hapi server
+
+```javascript
 export default {
-    server: {port: process.env.PORT},
-    register: {
-        plugins: [
-            {plugin: '@travi/hapi-html-request-router'},
-            {
-                plugin: '@travi/hapi-react-router',
-                options: {
-                    respond: (reply, {renderedContent}) => {
-                        reply.view('layout', {renderedContent});
-                    },
-                    routes: (
-                        <Route path="/" component={Wrap}>
-                            <IndexRoute component={Index}/>
-                            <Route path="/foo" component={Foo}/>
-                            <Route path="/bar" component={Bar}/>
-                            <Route path="*" component={NotFound}/>
-                        </Route>
-                    ),
-                    Root: ({store, children}) => (
-                        <Provider store={store}>
-                            {children}
-                        </Provider>
-                    ),
-                    configureStore: ({session}) => createStore(reducer, composeMiddlewares(session))
-                }
-            }
-        ]
-    }
-}
+  server: {port: process.env.PORT},
+  register: {
+    plugins: [
+      {plugin: '@travi/hapi-html-request-router'},
+      {
+        plugin: '@travi/hapi-react-router',
+        options: {
+          respond: (reply, {renderedContent}) => {
+            reply.view('layout', {renderedContent});
+          },
+          routes: (
+            <Route path="/" component={Wrap}>
+              <IndexRoute component={Index} />
+              <Route path="/foo" component={Foo} />
+              <Route path="/bar" component={Bar} />
+              <Route path="*" component={NotFound} />
+            </Route>
+          ),
+          Root: ({store, children}) => (
+            <Provider store={store}>
+              {children}
+            </Provider>
+          ),
+          configureStore: ({session}) => createStore(reducer, composeMiddlewares(session)),
+```
+
+##### Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop
+
+```javascript
+          render: (defaultRender, request) => defaultRender({nonces: request.plugins.blankie.nonces})
+        }
+      }
+    ]
+  }
+};
 ```
 
 ### Dependencies for you to provide

@@ -10,6 +10,8 @@ overrides:
       import/no-extraneous-dependencies:
         - error
         - devDependencies: true
+      react/prop-types: off
+      no-undef: off
   - files:
     - src/**/*.js
     - test/unit/**/*-test.js
