@@ -1,8 +1,8 @@
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import {plugin} from '../../src/route';
-import * as routerWrapper from '../../src/router-wrapper';
+import {plugin} from './route';
+import * as routerWrapper from './router-wrapper';
 
 suite('route', () => {
   let sandbox;
@@ -16,7 +16,7 @@ suite('route', () => {
   teardown(() => sandbox.restore());
 
   test('that the plugin is defined', () => {
-    assert.deepEqual(plugin.pkg, require('../../package.json'));
+    assert.deepEqual(plugin.pkg, require('../package.json'));
   });
 
   test('that the request for html is handled', async () => {

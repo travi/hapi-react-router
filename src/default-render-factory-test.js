@@ -4,7 +4,7 @@ import {RouterContext} from 'react-router';
 import sinon from 'sinon';
 import any from '@travi/any';
 import {assert} from 'chai';
-import defaultRenderFactory from '../../src/default-render-factory';
+import defaultRenderFactory from './default-render-factory';
 
 suite('default-render factory', () => {
   let sandbox;

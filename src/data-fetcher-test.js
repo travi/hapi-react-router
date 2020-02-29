@@ -2,7 +2,7 @@ import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
 import redial from 'redial';
-import fetchData from '../../src/data-fetcher';
+import fetchData from './data-fetcher';
 
 suite('data fetcher', () => {
   let sandbox;

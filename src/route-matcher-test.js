@@ -3,7 +3,7 @@ import * as reactRouter from 'react-router';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
-import matchRoute from '../../src/route-matcher';
+import matchRoute from './route-matcher';
 
 suite('route matcher', () => {
   let sandbox;

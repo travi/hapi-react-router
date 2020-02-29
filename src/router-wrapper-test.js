@@ -3,10 +3,10 @@ import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
 import Boom from '@hapi/boom';
-import renderThroughReactRouter from '../../src/router-wrapper';
-import * as defaultRenderFactory from '../../src/default-render-factory';
-import * as routeMatcher from '../../src/route-matcher';
-import * as dataFetcher from '../../src/data-fetcher';
+import renderThroughReactRouter from './router-wrapper';
+import * as defaultRenderFactory from './default-render-factory';
+import * as routeMatcher from './route-matcher';
+import * as dataFetcher from './data-fetcher';
 
 suite('router-wrapper', () => {
   let sandbox;

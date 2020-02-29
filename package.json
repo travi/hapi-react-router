@@ -10,7 +10,7 @@
     "lint:md": "remark --quiet . --frail",
     "lint:travis": "travis-lint .travis.yml",
     "lint:peer": "npm ls >/dev/null",
-    "tests:unit:no-coverage": "mocha --recursive test/unit",
+    "tests:unit:no-coverage": "mocha 'src/**/*-test.js'",
     "coverage": "nyc run-s tests:unit:no-coverage",
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test:unit": "run-s coverage",
