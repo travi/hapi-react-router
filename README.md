@@ -26,6 +26,7 @@
 [![npm](https://img.shields.io/npm/v/@travi/hapi-react-router.svg?maxAge=2592000)](https://www.npmjs.com/package/@travi/hapi-react-router)
 ![node][node-badge]
 [![license](https://img.shields.io/github/license/travi/hapi-react-router.svg)](LICENSE)
+[![Try @travi/hapi-react-router on RunKit][runkit-badge]][runkit-link]
 
 ### Installation
 
@@ -150,3 +151,7 @@ $ npm start
 ```
 
 [node-badge]: https://img.shields.io/node/v/@travi/javascript-scaffolder.svg
+
+[runkit-link]: https://npm.runkit.com/@travi/hapi-react-router
+
+[runkit-badge]: https://badge.runkitcdn.com/@travi/hapi-react-router.svg

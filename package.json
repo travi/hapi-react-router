@@ -5,6 +5,7 @@
   "version": "0.0.0-semantically-released",
   "main": "lib/plugin.cjs.js",
   "module": "lib/plugin.es.js",
+  "runkitExampleFilename": "./example/index.js",
   "scripts": {
     "lint:js": "eslint .",
     "lint:md": "remark --quiet . --frail",
