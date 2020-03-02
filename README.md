@@ -134,8 +134,8 @@ required.
 * `state`: current state of the redux store
 * `getState`: [method](https://redux.js.org/api/store/#getstate) to get the
   latest state of the redux store
-* `store`: the raw redux store. WARNING: this should only be used for unique
-  circumstances (e.g., creating a custom subscription to the store)
+* `store`: the raw redux store. :warning: WARNING: this should only be used for
+  unique circumstances (e.g., creating a custom subscription to the store)
 
 ## Contribution
 
