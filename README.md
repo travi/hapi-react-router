@@ -16,6 +16,7 @@
     * [Register with the Hapi server](#register-with-the-hapi-server)
       * [Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop](#optional-custom-renderer-that-passes-blankie-optional-to-provide-yourself-nonces-as-a-prop)
   * [Dependencies for you to provide](#dependencies-for-you-to-provide)
+  * [Redial fetch trigger arguments](#redial-fetch-trigger-arguments)
 * [Contribution](#contribution)
   * [Install dependencies](#install-dependencies)
   * [Verification](#verification)
@@ -48,7 +49,8 @@ to direct all `text/html` requests to this `/html` route.
 In addition, [redial](https://github.com/markdalgleish/redial) `fetch` hooks
 will be triggered and rendering will wait for all related requests to complete.
 This enables populating the data store based on the components that are mounted
-for the current route.
+for the current route. See [redial arguments](#redial-fetch-trigger-arguments)
+for the list of arguments supplied to triggered fetches.
 
 ### Example
 
@@ -124,6 +126,16 @@ required.
   component so that your component can inject it into the context through a
   provider component.
 * `render`: _optional_ custom renderer to replace the default renderer. Passed `defaultRenderer` and `request` as arguments so additional props can be passed to the defaultRenderer, potentially from the request.
+
+### Redial fetch trigger arguments
+
+* `params`: pass-through of react-router params taken from the path
+* `dispatch`: redux store [dispatch](https://redux.js.org/api/store/#dispatchaction) method
+* `state`: current state of the redux store
+* `getState`: [method](https://redux.js.org/api/store/#getstate) to get the
+  latest state of the redux store
+* `store`: the raw redux store. :warning: WARNING: this should only be used for
+  unique circumstances (e.g., creating a custom subscription to the store)
 
 ## Contribution
 
