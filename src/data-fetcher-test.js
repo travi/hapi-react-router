@@ -23,7 +23,7 @@ suite('data fetcher', () => {
     const getState = sinon.stub().returns(state);
     const renderProps = {...any.simpleObject(), components, params};
     const store = {...any.simpleObject(), dispatch, getState};
-    redial.trigger.withArgs('fetch', components, {params, dispatch, state, getState}).resolves();
+    redial.trigger.withArgs('fetch', components, {params, dispatch, state, getState, store}).resolves();
 
     return assert.isFulfilled(fetchData({renderProps, store}));
   });

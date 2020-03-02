@@ -7,6 +7,7 @@ export default function ({renderProps, store}) {
     params: renderProps.params,
     dispatch: store.dispatch,
     state: getState(),
-    getState
+    getState,
+    store
   });
 }
