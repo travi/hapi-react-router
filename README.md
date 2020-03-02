@@ -14,7 +14,7 @@
   * [Example](#example)
     * [Dependencies:](#dependencies)
     * [Register with the Hapi server](#register-with-the-hapi-server)
-    * [Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop](#optional-custom-renderer-that-passes-blankie-optional-to-provide-yourself-nonces-as-a-prop)
+      * [Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop](#optional-custom-renderer-that-passes-blankie-optional-to-provide-yourself-nonces-as-a-prop)
   * [Dependencies for you to provide](#dependencies-for-you-to-provide)
 * [Contribution](#contribution)
   * [Install dependencies](#install-dependencies)
@@ -94,7 +94,7 @@ export default {
 ##### Optional custom renderer that passes blankie (optional to provide yourself) nonces as a prop
 
 ```javascript
-          render: (defaultRender, request) => defaultRender({nonces: request.plugins.blankie.nonces})
+          render: (defaultRender, request) => ({html: defaultRender({nonces: request.plugins.blankie.nonces})})
         }
       }
     ]
