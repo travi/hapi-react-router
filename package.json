@@ -39,6 +39,9 @@
     "redial"
   ],
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org/)",
+  "contributors": [
+    "Trevor Richardson <npm@trevorrichardson.me> (https://trevorrichardson.me)"
+  ],
   "bugs": {
     "url": "https://github.com/travi/hapi-react-router/issues"
   },
