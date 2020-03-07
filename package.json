@@ -84,7 +84,7 @@
     "remark-toc": "^7.0.0",
     "remark-usage": "^7.0.1",
     "rollup": "^2.0.2",
-    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel": "^4.4.0",
     "sinon": "^9.0.0",
     "travis-lint": "^1.0.0",
     "vision": "^5.4.4"
