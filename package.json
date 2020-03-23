@@ -104,7 +104,8 @@
     "access": "public"
   },
   "files": [
-    "lib/"
+    "lib/",
+    "example/"
   ],
   "engines": {
     "node": ">12"
