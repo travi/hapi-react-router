@@ -61,7 +61,7 @@
     "@travi/hapi-html-request-router": "3.0.1",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "codecov": "3.7.1",
+    "codecov": "3.7.2",
     "commitlint-config-travi": "1.3.8",
     "cross-env": "7.0.2",
     "cucumber": "6.0.5",
