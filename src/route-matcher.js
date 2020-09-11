@@ -1,10 +1,12 @@
-import {OK, NOT_FOUND} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 import {match, createMemoryHistory} from 'react-router';
 
 function determineStatusFrom(components) {
-  if (components && components.map(component => component.displayName).includes('NotFound')) return NOT_FOUND;
+  if (components && components.map(component => component.displayName).includes('NotFound')) {
+    return StatusCodes.NOT_FOUND;
+  }
 
-  return OK;
+  return StatusCodes.OK;
 }
 
 export default function matchRoute(url, routes) {
