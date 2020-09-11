@@ -1,4 +1,4 @@
-import {OK, NOT_FOUND} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 import * as reactRouter from 'react-router';
 import sinon from 'sinon';
 import {assert} from 'chai';
@@ -34,7 +34,7 @@ suite('route matcher', () => {
     return assert.becomes(matchRoute(url, routes), {
       redirectLocation: null,
       renderProps: renderPropWithComponents,
-      status: OK
+      status: StatusCodes.OK
     });
   });
 
@@ -46,7 +46,7 @@ suite('route matcher', () => {
     return assert.becomes(matchRoute(url, routes), {
       redirectLocation,
       renderProps: null,
-      status: OK
+      status: StatusCodes.OK
     });
   });
 
@@ -65,7 +65,7 @@ suite('route matcher', () => {
     return assert.becomes(matchRoute(url, routes), {
       redirectLocation,
       renderProps: renderPropsWithComponents,
-      status: NOT_FOUND
+      status: StatusCodes.NOT_FOUND
     });
   });
 });

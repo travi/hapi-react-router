@@ -1,4 +1,4 @@
-import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
@@ -69,7 +69,7 @@ suite('router-wrapper', () => {
     const temporary = sinon.stub();
     const permanent = sinon.stub();
     const redirectPathname = any.url();
-    const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_TEMPORARILY}};
+    const redirectLocation = {pathname: redirectPathname, state: {status: StatusCodes.MOVED_TEMPORARILY}};
     routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
     redirect.withArgs(redirectPathname).returns({temporary, permanent});
     temporary.returns(redirectResponse);
@@ -89,7 +89,7 @@ suite('router-wrapper', () => {
     const temporary = sinon.stub();
     const permanent = sinon.stub();
     const redirectPathname = any.url();
-    const redirectLocation = {pathname: redirectPathname, state: {status: MOVED_PERMANENTLY}};
+    const redirectLocation = {pathname: redirectPathname, state: {status: StatusCodes.MOVED_PERMANENTLY}};
     routeMatcher.default.withArgs(url, routes).resolves({redirectLocation});
     redirect.withArgs(redirectPathname).returns({temporary, permanent});
     permanent.returns(redirectResponse);

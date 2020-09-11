@@ -1,5 +1,5 @@
 import Boom from '@hapi/boom';
-import {MOVED_PERMANENTLY, MOVED_TEMPORARILY} from 'http-status-codes';
+import {StatusCodes} from 'http-status-codes';
 import matchRoute from './route-matcher';
 import fetchData from './data-fetcher';
 import defaultRenderFactory from './default-render-factory';
@@ -12,9 +12,9 @@ export default async function renderThroughReactRouter(request, h, {render, rout
       const state = redirectLocation.state || {};
 
       switch (state.status) {
-        case MOVED_PERMANENTLY:
+        case StatusCodes.MOVED_PERMANENTLY:
           return h.redirect(redirectLocation.pathname).permanent();
-        case MOVED_TEMPORARILY:
+        case StatusCodes.MOVED_TEMPORARILY:
           return h.redirect(redirectLocation.pathname).temporary();
         default:
           return h.redirect(redirectLocation.pathname).temporary();
