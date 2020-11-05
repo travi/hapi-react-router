@@ -108,7 +108,7 @@
     "example/"
   ],
   "engines": {
-    "node": ">12"
+    "node": ">=12"
   },
   "config": {
     "commitizen": {
