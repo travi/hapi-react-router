@@ -49,7 +49,7 @@
     "@babel/node": "7.12.10",
     "@babel/plugin-external-helpers": "7.12.1",
     "@babel/register": "7.12.10",
-    "@hapi/boom": "9.1.0",
+    "@hapi/boom": "9.1.1",
     "@hapi/glue": "7.0.0",
     "@travi/any": "2.0.15",
     "@travi/babel-preset": "3.0.38",
