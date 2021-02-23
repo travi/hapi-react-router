@@ -52,7 +52,7 @@
     "@hapi/boom": "9.1.1",
     "@hapi/glue": "7.0.0",
     "@travi/any": "2.0.16",
-    "@travi/babel-preset": "3.0.42",
+    "@travi/babel-preset": "3.0.43",
     "@travi/eslint-config": "1.0.61",
     "@travi/eslint-config-cucumber": "1.0.5",
     "@travi/eslint-config-mocha": "1.0.9",
