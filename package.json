@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/travi/hapi-react-router#readme",
   "devDependencies": {
-    "@babel/node": "7.13.13",
+    "@babel/node": "7.14.2",
     "@babel/plugin-external-helpers": "7.12.13",
     "@babel/register": "7.13.16",
     "@hapi/boom": "9.1.2",
