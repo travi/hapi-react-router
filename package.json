@@ -55,7 +55,7 @@
     "@travi/babel-preset": "3.0.56",
     "@travi/eslint-config": "1.0.72",
     "@travi/eslint-config-cucumber": "1.0.5",
-    "@travi/eslint-config-mocha": "1.0.11",
+    "@travi/eslint-config-mocha": "1.0.12",
     "@travi/eslint-config-react": "1.0.56",
     "@travi/hapi-html-request-router": "3.0.1",
     "chai": "4.3.4",
