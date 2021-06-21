@@ -50,7 +50,7 @@
     "@babel/plugin-external-helpers": "7.14.5",
     "@babel/register": "7.14.5",
     "@hapi/boom": "9.1.2",
-    "@hapi/glue": "7.0.0",
+    "@hapi/glue": "8.0.0",
     "@travi/any": "2.0.16",
     "@travi/babel-preset": "3.0.59",
     "@travi/eslint-config": "1.0.75",
