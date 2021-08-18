@@ -22,7 +22,8 @@
     "start": "cross-env BABEL_ENV=example babel-node ./example/app.js",
     "build": "rollup -c",
     "generate:md": "remark . --output",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
