@@ -83,7 +83,7 @@
     "redial": "0.5.0",
     "redux": "4.1.1",
     "remark-cli": "10.0.0",
-    "remark-preset-lint-travi": "2.0.1",
+    "remark-preset-lint-travi": "2.0.2",
     "remark-toc": "8.0.0",
     "remark-usage": "10.0.0",
     "rollup": "2.56.2",
