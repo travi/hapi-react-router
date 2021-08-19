@@ -175,7 +175,7 @@ $ npm test
 $ npm start
 ```
 
-[node-badge]: https://img.shields.io/node/v/@travi/javascript-scaffolder.svg
+[node-badge]: https://img.shields.io/node/v/@travi/hapi-react-router.svg
 
 [runkit-link]: https://npm.runkit.com/@travi/hapi-react-router
 
