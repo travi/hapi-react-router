@@ -88,7 +88,7 @@
     "remark-usage": "10.0.1",
     "rollup": "2.59.0",
     "rollup-plugin-babel": "4.4.0",
-    "sinon": "12.0.0",
+    "sinon": "12.0.1",
     "vision": "5.4.4"
   },
   "peerDependencies": {
