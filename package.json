@@ -15,7 +15,7 @@
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test:unit": "run-s coverage",
     "test:integration": "run-s test:integration:base -- --tags 'not @wip'",
-    "test:integration:base": "cucumber-js test/integration --require-module @babel/register --format-options '{\"snippetInterface\": \"async-await\"}'",
+    "test:integration:base": "cucumber-js test/integration --require-module @babel/register --publish-quiet --format-options '{\"snippetInterface\": \"async-await\"}'",
     "test:integration:debug": "DEBUG=test run-s tests:integration",
     "test:integration:wip": "run-s test:integration:base -- --tags @wip",
     "test": "run-s lint:* test:*",

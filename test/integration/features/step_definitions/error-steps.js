@@ -1,4 +1,4 @@
-import {When, Then} from 'cucumber';
+import {When, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
 import {NOT_FOUND, INTERNAL_SERVER_ERROR} from 'http-status-codes';
 

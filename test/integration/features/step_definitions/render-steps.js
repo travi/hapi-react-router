@@ -1,6 +1,6 @@
 import {OK} from 'http-status-codes';
 import {assert} from 'chai';
-import {When, Then} from 'cucumber';
+import {When, Then} from '@cucumber/cucumber';
 
 When(/^a request is made for an existing route$/, function () {
   return this.makeRequest({url: '/existing-route'});
