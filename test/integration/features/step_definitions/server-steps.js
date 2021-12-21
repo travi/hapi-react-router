@@ -7,7 +7,7 @@ import hapi from '@hapi/hapi';
 import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
 import mustache from 'mustache';
 import any from '@travi/any';
-import {setWorldConstructor, Before} from 'cucumber';
+import {setWorldConstructor, Before} from '@cucumber/cucumber';
 import {World} from '../support/world';
 
 const reducer = (state, action) => {

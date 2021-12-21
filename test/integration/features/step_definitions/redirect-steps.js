@@ -1,6 +1,6 @@
 import {MOVED_TEMPORARILY, MOVED_PERMANENTLY} from 'http-status-codes';
 import {assert} from 'chai';
-import {When, Then} from 'cucumber';
+import {When, Then} from '@cucumber/cucumber';
 
 let redirectType;
 
