@@ -62,7 +62,7 @@
     "chai": "4.3.4",
     "chai-as-promised": "7.1.1",
     "codecov": "3.8.3",
-    "commitlint-config-travi": "1.4.6",
+    "commitlint-config-travi": "1.4.7",
     "cross-env": "7.0.3",
     "@cucumber/cucumber": "7.3.2",
     "cz-conventional-changelog": "3.3.0",
