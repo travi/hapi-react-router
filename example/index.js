@@ -7,11 +7,21 @@ import {Provider} from 'react-redux';
 // #### Register with the Hapi server
 
 // remark-usage-ignore-next 5
-const Wrap = () => null;
-const Index = () => null;
-const Foo = () => null;
-const Bar = () => null;
-const NotFound = () => null;
+function Wrap() {
+  return null;
+}
+function Index() {
+  return null;
+}
+function Foo() {
+  return null;
+}
+function Bar() {
+  return null;
+}
+function NotFound() {
+  return null;
+}
 
 export default {
   server: {port: process.env.PORT},
