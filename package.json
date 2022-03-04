@@ -57,7 +57,7 @@
     "@travi/eslint-config": "1.0.86",
     "@travi/eslint-config-cucumber": "1.0.5",
     "@travi/eslint-config-mocha": "1.0.16",
-    "@travi/eslint-config-react": "1.0.76",
+    "@travi/eslint-config-react": "1.0.77",
     "@travi/hapi-html-request-router": "3.0.1",
     "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
