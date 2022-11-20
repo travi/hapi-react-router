@@ -64,7 +64,7 @@
     "codecov": "3.8.3",
     "commitlint-config-travi": "1.4.10",
     "cross-env": "7.0.3",
-    "@cucumber/cucumber": "7.3.2",
+    "@cucumber/cucumber": "8.8.0",
     "cz-conventional-changelog": "3.3.0",
     "good": "8.1.2",
     "good-console": "8.0.0",
